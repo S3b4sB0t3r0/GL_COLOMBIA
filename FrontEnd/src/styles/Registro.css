@@ -1,0 +1,55 @@
+/* Estilos para el formulario de registro */
+.registro-container {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff; /* Un fondo diferente para distinguir el registro */
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+  }
+  
+  .registro-container h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .registro-container p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  #registro-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #registro-form input {
+    width: 50%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #444;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #registro-form button {
+    padding: 15px 30px;
+    background-color: #000000; /* Un botón de color diferente */
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  #registro-form button:hover {
+    background-color: #ffffff;
+  }
+  
+  #registro-form input::placeholder {
+    color: #bbb;
+  }
+  

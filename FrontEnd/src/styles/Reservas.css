@@ -1,0 +1,86 @@
+#reservas-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #1c1c1c;
+  color: white;
+}
+
+#reservas-sidebar {
+  width: 250px;
+  background-color: #000;
+  padding: 20px;
+}
+
+#reservas-sidebar-list {
+  list-style: none;
+  padding: 0;
+}
+
+#reservas-sidebar-list li {
+  padding: 15px 0;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#reservas-sidebar-list li:hover,
+#reservas-sidebar-list li.active {
+  color: white;
+}
+
+#reservas-main-content {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+#reservas-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#reservas-form-container {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#reservas-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservas-label {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.reservas-input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #444;
+  color: white;
+}
+
+#reservas-submit-btn {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+#reservas-submit-btn:hover {
+  background-color: #ddd;
+}
+
+/* Estilo adicional para el campo "Especificar tipo de evento" */
+#otroEvento {
+  margin-top: 10px;
+  background-color: #555;
+}

@@ -1,0 +1,69 @@
+.restablecer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #000000;
+    color: rgb(0, 0, 0);
+  }
+  
+  .restablecer-titulo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .restablecer-instrucciones {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .restablecer-formulario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .restablecer-label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  
+  .restablecer-input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .restablecer-boton {
+    padding: 1rem;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .restablecer-boton:hover {
+    background-color: #ccc;
+  }
+  
+  .restablecer-opcion {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .restablecer-opcion a {
+    color: #000000;
+    text-decoration: underline;
+  }
+  

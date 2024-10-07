@@ -1,0 +1,62 @@
+#cuenta-page-sebastian {
+  display: flex;
+  min-height: 100vh;
+  background-color: #1c1c1c;
+  color: white;
+}
+
+#cuenta-sidebar-sebastian {
+  width: 250px;
+  background-color: #000;
+  padding: 20px;
+}
+
+#cuenta-sidebar-list-sebastian {
+  list-style: none;
+  padding: 0;
+}
+
+#cuenta-sidebar-list-sebastian li {
+  padding: 15px 0;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+#cuenta-sidebar-list-sebastian li:hover,
+#cuenta-sidebar-list-sebastian li.active {
+  color: white;
+}
+
+#cuenta-main-content-sebastian {
+  flex-grow: 1;
+  padding: 40px;
+}
+
+#cuenta-profile-view-sebastian, #cuenta-profile-edit-sebastian {
+  margin-top: 20px;
+}
+
+#cuenta-boton-sebastian {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#cuenta-input-sebastian {
+  color: white;
+  background-color: #333;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  width: 200px;
+}
+
+.cuenta-form-group-sebastian {
+  display: flex;
+  gap: 10px;
+}

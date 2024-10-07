@@ -1,0 +1,53 @@
+.restablecer-contraseña-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #000000;
+  color: rgb(0, 0, 0);
+
+}
+
+.restablecer-contraseña-titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.restablecer-contraseña-mensaje {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.restablecer-contraseña-formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.restablecer-contraseña-input {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #000;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.restablecer-contraseña-boton {
+  padding: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.restablecer-contraseña-boton:hover {
+  background-color: #ccc;
+}
