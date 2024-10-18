@@ -51,36 +51,62 @@
   flex-direction: column;
 }
 
+.reservas-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.reservas-row.fecha-hora-duracion {
+  margin-bottom: 40px;
+}
+
+.reservas-col {
+  flex: 0.7; /* Ajustar el tamaño de todos los campos al tamaño del campo "Hora" */
+  margin-right: 25px;
+}
+
+.reservas-col:last-child {
+  margin-right: 0;
+}
+
 .reservas-label {
-  margin-bottom: 8px;
-  font-size: 18px;
+  margin-bottom: 6px;
+  font-size: 16px;
 }
 
 .reservas-input {
-  margin-bottom: 15px;
-  padding: 10px;
+  padding: 8px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #666;
   background-color: #444;
   color: white;
+  width: 100%;
 }
 
 #reservas-submit-btn {
   background-color: #fff;
   color: #000;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
 #reservas-submit-btn:hover {
   background-color: #ddd;
 }
 
-/* Estilo adicional para el campo "Especificar tipo de evento" */
 #otroEvento {
   margin-top: 10px;
-  background-color: #555;
+}
+
+#imagenUrl {
+  margin-top: 15px;
+}
+
+.reservas-input[type="number"] {
+  width: 100%;
 }

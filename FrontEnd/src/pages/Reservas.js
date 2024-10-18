@@ -11,12 +11,11 @@ function Reservas() {
   const [tipoEvento, setTipoEvento] = useState('');
   const [otroEvento, setOtroEvento] = useState('');
   const [duracion, setDuracion] = useState('');
-  const [imagenUrl, setImagenUrl] = useState(''); // Nuevo estado para la URL de la imagen
+  const [imagenUrl, setImagenUrl] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const now = new Date();
     const fechaSeleccionada = new Date(`${fecha}T${hora}`);
     if (fechaSeleccionada < now) {
@@ -32,13 +31,13 @@ function Reservas() {
       teatro,
       tipoEvento: tipoEvento === "Otro" ? otroEvento : tipoEvento,
       duracion,
-      imagenUrl, // Añadir la URL de la imagen al objeto de reserva
+      imagenUrl,
     };
 
     console.log('Reserva enviada:', reserva);
 
     try {
-      const response = await fetch('http://localhost:4000/reservas', { // Asegúrate que el puerto sea correcto
+      const response = await fetch('http://localhost:4000/reservas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +53,7 @@ function Reservas() {
       const data = await response.json();
       console.log('Reserva guardada:', data);
       alert('Reserva realizada con éxito!');
-      navigate('/'); // Redirigir a otra página si lo deseas
+      navigate('/');
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
       alert('Hubo un error al realizar la reserva. Intenta nuevamente.');
@@ -78,82 +77,114 @@ function Reservas() {
         <h1 className="reservas-title" id="reservas-title">Reservar Teatro</h1>
         <div className="reservas-form-container" id="reservas-form-container">
           <form className="reservas-form" id="reservas-form" onSubmit={handleSubmit}>
-            <label htmlFor="nombre" className="reservas-label">Nombre Completo</label>
-            <input 
-              type="text" 
-              id="nombre" 
-              value={nombre} 
-              onChange={(e) => setNombre(e.target.value)} 
-              className="reservas-input" 
-              required 
-            />
-            
-            <label htmlFor="email" className="reservas-label">Correo Electrónico</label>
-            <input 
-              type="email" 
-              id="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              className="reservas-input" 
-              required 
-            />
-
-            <label htmlFor="fecha" className="reservas-label">Fecha</label>
-            <input 
-              type="date" 
-              id="fecha" 
-              value={fecha} 
-              onChange={(e) => setFecha(e.target.value)} 
-              className="reservas-input" 
-              required 
-            />
-
-            <label htmlFor="hora" className="reservas-label">Hora</label>
-            <input 
-              type="time" 
-              id="hora" 
-              value={hora} 
-              onChange={(e) => setHora(e.target.value)} 
-              className="reservas-input" 
-              required 
-            />
-
-            <label htmlFor="teatro" className="reservas-label">Teatro</label>
-            <select 
-              id="teatro" 
-              value={teatro} 
-              onChange={(e) => setTeatro(e.target.value)} 
-              className="reservas-input" 
-              required
-            >
-              <option value="">Selecciona un teatro</option>
-              <option value="Teatro Libre">Teatro Libre</option>
-              <option value="Teatro Colon">Teatro Colon</option>
-              <option value="Teatro Delia">Teatro Delia</option>
-              <option value="Teatro Nacional">Teatro Nacional</option>
-              <option value="Teatro Lozano">Teatro Lozano</option>
-            </select>
-
-            <label htmlFor="tipoEvento" className="reservas-label">Tipo de Evento</label>
-            <select 
-              id="tipoEvento" 
-              value={tipoEvento} 
-              onChange={(e) => setTipoEvento(e.target.value)} 
-              className="reservas-input" 
-              required
-            >
-              <option value="">Selecciona el tipo de evento</option>
-              <option value="Obra de teatro">Obra de teatro</option>
-              <option value="Obra Musical">Obra Musical</option>
-              <option value="Otro">Otro</option>
-            </select>
-
-            {tipoEvento === 'Otro' && (
-              <div>
-                <label htmlFor="otroEvento" className="reservas-label">Especifica el Tipo de Evento</label>
+            <div className="reservas-row">
+              <div className="reservas-col">
+                <label htmlFor="input-nombre" className="reservas-label">Nombre Completo</label>
                 <input 
                   type="text" 
-                  id="otroEvento" 
+                  id="input-nombre" 
+                  value={nombre} 
+                  onChange={(e) => setNombre(e.target.value)} 
+                  className="reservas-input" 
+                  required 
+                />
+              </div>
+              
+              <div className="reservas-col">
+                <label htmlFor="input-email" className="reservas-label">Correo Electrónico</label>
+                <input 
+                  type="email" 
+                  id="input-email" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  className="reservas-input" 
+                  required 
+                />
+              </div>
+            </div>
+
+            <div className="reservas-row">
+              <div className="reservas-col">
+                <label htmlFor="input-fecha" className="reservas-label">Fecha</label>
+                <input 
+                  type="date" 
+                  id="input-fecha" 
+                  value={fecha} 
+                  onChange={(e) => setFecha(e.target.value)} 
+                  className="reservas-input" 
+                  required 
+                />
+              </div>
+              
+              <div className="reservas-col">
+                <label htmlFor="input-hora" className="reservas-label">Hora</label>
+                <input 
+                  type="time" 
+                  id="input-hora" 
+                  value={hora} 
+                  onChange={(e) => setHora(e.target.value)} 
+                  className="reservas-input" 
+                  required 
+                />
+              </div>
+
+              <div className="reservas-col">
+                <label htmlFor="input-duracion" className="reservas-label">Duración (Horas)</label>
+                <input 
+                  type="number" 
+                  id="input-duracion" 
+                  value={duracion} 
+                  onChange={(e) => setDuracion(e.target.value)} 
+                  className="reservas-input" 
+                  required 
+                  min="1"
+                  max="12"
+                />
+              </div>
+            </div>
+
+            <div className="reservas-row">
+              <div className="reservas-col">
+                <label htmlFor="input-teatro" className="reservas-label">Teatro</label>
+                <select 
+                  id="input-teatro" 
+                  value={teatro} 
+                  onChange={(e) => setTeatro(e.target.value)} 
+                  className="reservas-input" 
+                  required
+                >
+                  <option value="">Selecciona un teatro</option>
+                  <option value="Teatro Libre">Teatro Libre</option>
+                  <option value="Teatro Colon">Teatro Colon</option>
+                  <option value="Teatro Delia">Teatro Delia</option>
+                  <option value="Teatro Nacional">Teatro Nacional</option>
+                  <option value="Teatro Lozano">Teatro Lozano</option>
+                </select>
+              </div>
+
+              <div className="reservas-col">
+                <label htmlFor="input-tipoEvento" className="reservas-label">Tipo de Evento</label>
+                <select 
+                  id="input-tipoEvento" 
+                  value={tipoEvento} 
+                  onChange={(e) => setTipoEvento(e.target.value)} 
+                  className="reservas-input" 
+                  required
+                >
+                  <option value="">Selecciona el tipo de evento</option>
+                  <option value="Obra de teatro">Obra de teatro</option>
+                  <option value="Obra Musical">Obra Musical</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            {tipoEvento === 'Otro' && (
+              <div className="reservas-col">
+                <label htmlFor="input-otroEvento" className="reservas-label">Especifica el Tipo de Evento</label>
+                <input 
+                  type="text" 
+                  id="input-otroEvento" 
                   value={otroEvento} 
                   onChange={(e) => setOtroEvento(e.target.value)} 
                   className="reservas-input" 
@@ -162,27 +193,17 @@ function Reservas() {
               </div>
             )}
 
-            <label htmlFor="duracion" className="reservas-label">Duración del Evento (Horas)</label>
-            <input 
-              type="number" 
-              id="duracion" 
-              value={duracion} 
-              onChange={(e) => setDuracion(e.target.value)} 
-              className="reservas-input" 
-              required 
-              min="1"
-              max="12"
-            />
-
-            <label htmlFor="imagenUrl" className="reservas-label">URL de la Imagen</label>
-            <input 
-              type="url" 
-              id="imagenUrl" 
-              value={imagenUrl} 
-              onChange={(e) => setImagenUrl(e.target.value)} 
-              className="reservas-input" 
-              required 
-            />
+            <div className="reservas-col">
+              <label htmlFor="input-imagenUrl" className="reservas-label">URL de la Imagen</label>
+              <input 
+                type="url" 
+                id="input-imagenUrl" 
+                value={imagenUrl} 
+                onChange={(e) => setImagenUrl(e.target.value)} 
+                className="reservas-input" 
+                required 
+              />
+            </div>
 
             <button type="submit" className="reservas-submit-btn" id="reservas-submit-btn">Reservar</button>
           </form>

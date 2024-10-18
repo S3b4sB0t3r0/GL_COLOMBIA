@@ -8,9 +8,12 @@ function Admin() {
   const [contactos, setContactos] = useState([]);
   const [reservas, setReservas] = useState([]);
   const [activeSection, setActiveSection] = useState('usuarios');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [eventoEditando, setEventoEditando] = useState(null);
+  const [teatroEditando, setTeatroEditando] = useState(null);
 
-  const apiUrl = 'http://localhost:4001'; // Para la API
-  const backendUrl = 'http://localhost:4000'; // Para el backend
+  const apiUrl = 'http://localhost:4001';
+  const backendUrl = 'http://localhost:4000';
 
   useEffect(() => {
     cargarDatos();
@@ -77,9 +80,12 @@ function Admin() {
     e.preventDefault();
     const newTeatro = {
       titulo: e.target.titulo.value,
+      descripcion: e.target.descripcion.value,
       capacidad: e.target.capacidad.value,
+      telefono: e.target.telefono.value,
       direccion: e.target.direccion.value,
       imagen: e.target.imagen.value,
+      mapa: e.target.mapa.value,
     };
 
     await fetch(`${apiUrl}/Teatros`, {
@@ -122,7 +128,7 @@ function Admin() {
     const confirm = window.confirm(`¿Estás seguro de que deseas rechazar la reserva ${id}?`);
     if (confirm) {
       try {
-        const response = await fetch(`${backendUrl}/reservas/${id}/rechazar`, { method: 'POST' });
+        const response = await fetch(`${backendUrl}/Reservas/${id}/rechazar`, { method: 'POST' });
         if (!response.ok) throw new Error('Error al rechazar la reserva');
         alert(`Reserva ${id} rechazada.`);
         cargarDatos();
@@ -138,13 +144,71 @@ function Admin() {
     cargarDatos();
   };
 
+  const abrirModalEvento = (evento) => {
+    setEventoEditando(evento);
+    setModalVisible(true);
+  };
+
+  const abrirModalTeatro = (teatro) => {
+    setTeatroEditando(teatro);
+    setModalVisible(true);
+  };
+
+  const cerrarModal = () => {
+    setModalVisible(false);
+    setEventoEditando(null);
+    setTeatroEditando(null);
+  };
+
+  const editarEvento = async (e) => {
+    e.preventDefault();
+    const updatedEvento = {
+      nombre: e.target.nombre.value,
+      descripcion: e.target.descripcion.value,
+      fecha: e.target.fecha.value,
+      hora: e.target.hora.value,
+      imagen: e.target.imagen.value,
+    };
+
+    await fetch(`${apiUrl}/Eventos/${eventoEditando.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedEvento),
+    });
+    cargarDatos();
+    cerrarModal();
+  };
+
+  const editarTeatro = async (e) => {
+    e.preventDefault();
+    const updatedTeatro = {
+      titulo: e.target.titulo.value,
+      descripcion: e.target.descripcion.value,
+      capacidad: e.target.capacidad.value,
+      telefono: e.target.telefono.value,
+      direccion: e.target.direccion.value,
+      imagen: e.target.imagen.value,
+      mapa: e.target.mapa.value,
+    };
+
+    await fetch(`${apiUrl}/Teatros/${teatroEditando.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedTeatro),
+    });
+    cargarDatos();
+    cerrarModal();
+  };
+
   return (
     <div className="admin-container">
       <nav className="admin-nav">
         <h2>Administración</h2>
         <ul>
           <li><a href="#" onClick={() => setActiveSection('usuarios')}>Usuarios</a></li>
+          <li><a href="#" onClick={() => setActiveSection('agregarevento')}>Agregar Evento</a></li>
           <li><a href="#" onClick={() => setActiveSection('eventos')}>Eventos</a></li>
+          <li><a href="#" onClick={() => setActiveSection('agregarteatros')}>Agregar Teatros</a></li>
           <li><a href="#" onClick={() => setActiveSection('teatros')}>Teatros</a></li>
           <li><a href="#" onClick={() => setActiveSection('contacto')}>Contactos</a></li>
           <li><a href="#" onClick={() => setActiveSection('reservas')}>Reservas</a></li>
@@ -178,15 +242,6 @@ function Admin() {
 
         {activeSection === 'eventos' && (
           <section id="admin-eventos">
-            <h2 className="admin-section-title">Eventos</h2>
-            <form className="admin-event-form" onSubmit={agregarEvento}>
-              <input className="admin-input" type="text" name="nombre" placeholder="Nombre" required />
-              <input className="admin-input" type="text" name="descripcion" placeholder="Descripción" required />
-              <input className="admin-input" type="date" name="fecha" required />
-              <input className="admin-input" type="time" name="hora" required />
-              <input className="admin-input" type="url" name="imagen" placeholder="URL de la imagen" required />
-              <button className="admin-button" type="submit">Agregar Evento</button>
-            </form>
             <table className="admin-table">
               <thead>
                 <tr>
@@ -207,6 +262,7 @@ function Admin() {
                         {evento.disponible ? 'Desactivar' : 'Activar'}
                       </button>
                       <button className="admin-button" onClick={() => eliminarEvento(evento.id)}>Eliminar</button>
+                      <button className="admin-button" onClick={() => abrirModalEvento(evento)}>Editar</button>
                     </td>
                   </tr>
                 ))}
@@ -215,21 +271,29 @@ function Admin() {
           </section>
         )}
 
+        {activeSection === 'agregarevento' && (
+          <section id="admin-eventos">
+            <h2 className="admin-section-title">Eventos</h2>
+            <form className="admin-event-form" onSubmit={agregarEvento}>
+              <input className="admin-input" type="text" name="nombre" placeholder="Nombre" required />
+              <input className="admin-input" type="text" name="descripcion" placeholder="Descripción" required />
+              <input className="admin-input" type="date" name="fecha" required />
+              <input className="admin-input" type="time" name="hora" required />
+              <input className="admin-input" type="url" name="imagen" placeholder="URL de la imagen" required />
+              <button className="admin-button" type="submit">Agregar Evento</button>
+            </form>
+          </section>
+        )}
+
         {activeSection === 'teatros' && (
           <section id="admin-teatros">
-            <h2 className="admin-section-title">Teatros</h2>
-            <form className="admin-teatro-form" onSubmit={agregarTeatro}>
-              <input className="admin-input" type="text" name="titulo" placeholder="Título" required />
-              <input className="admin-input" type="number" name="capacidad" placeholder="Capacidad" required />
-              <input className="admin-input" type="url" name="direccion" placeholder="Dirección" required />
-              <input className="admin-input" type="url" name="imagen" placeholder="URL de la imagen" required />
-              <button className="admin-button" type="submit">Agregar Teatro</button>
-            </form>
             <table className="admin-table">
               <thead>
                 <tr>
                   <th>Título</th>
+                  <th>Descripción</th>
                   <th>Capacidad</th>
+                  <th>Teléfono</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -237,15 +301,34 @@ function Admin() {
                 {teatros.map(teatro => (
                   <tr key={teatro.id}>
                     <td>{teatro.titulo}</td>
+                    <td>{teatro.descripcion}</td>
                     <td>{teatro.capacidad}</td>
+                    <td>{teatro.telefono}</td>
                     <td>
                       <button className="admin-button" onClick={() => eliminarTeatro(teatro.id)}>Eliminar</button>
+                      <button className="admin-button" onClick={() => abrirModalTeatro(teatro)}>Editar</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </section>
+        )}
+
+        {activeSection === 'agregarteatros' && (
+          <section id="admin-teatros">
+                      <h2 className="admin-section-title">Teatros</h2>
+                      <form className="admin-teatro-form" onSubmit={agregarTeatro}>
+                        <input className="admin-input" type="text" name="titulo" placeholder="Título" required />
+                        <input className="admin-input" type="text" name="descripcion" placeholder="Descripción" required />
+                        <input className="admin-input" type="number" name="capacidad" placeholder="Capacidad" required />
+                        <input className="admin-input" type="text" name="telefono" placeholder="Teléfono" required />
+                        <input className="admin-input" type="url" name="direccion" placeholder="Dirección" required />
+                        <input className="admin-input" type="url" name="imagen" placeholder="URL de la imagen" required />
+                        <input className="admin-input" type="text" name="mapa" placeholder="Código de mapa" required />
+                        <button className="admin-button" type="submit">Agregar Teatro</button>
+                      </form>
+                      </section>
         )}
 
         {activeSection === 'contacto' && (
@@ -308,6 +391,37 @@ function Admin() {
               </tbody>
             </table>
           </section>
+        )}
+
+        {modalVisible && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={cerrarModal}>&times;</span>
+              {eventoEditando ? (
+                <form onSubmit={editarEvento}>
+                  <h2>Editar Evento</h2>
+                  <input className="admin-input" type="text" name="nombre" defaultValue={eventoEditando.nombre} required />
+                  <input className="admin-input" type="text" name="descripcion" defaultValue={eventoEditando.descripcion} required />
+                  <input className="admin-input" type="date" name="fecha" defaultValue={eventoEditando.fecha} required />
+                  <input className="admin-input" type="time" name="hora" defaultValue={eventoEditando.hora} required />
+                  <input className="admin-input" type="url" name="imagen" defaultValue={eventoEditando.imagen} required />
+                  <button className="admin-button" type="submit">Guardar Cambios</button>
+                </form>
+              ) : (
+                <form onSubmit={editarTeatro}>
+                  <h2>Editar Teatro</h2>
+                  <input className="admin-input" type="text" name="titulo" defaultValue={teatroEditando.titulo} required />
+                  <input className="admin-input" type="text" name="descripcion" defaultValue={teatroEditando.descripcion} required />
+                  <input className="admin-input" type="number" name="capacidad" defaultValue={teatroEditando.capacidad} required />
+                  <input className="admin-input" type="text" name="telefono" defaultValue={teatroEditando.telefono} required />
+                  <input className="admin-input" type="url" name="direccion" defaultValue={teatroEditando.direccion} required />
+                  <input className="admin-input" type="url" name="imagen" defaultValue={teatroEditando.imagen} required />
+                  <input className="admin-input" type="text" name="mapa" defaultValue={teatroEditando.mapa} required />
+                  <button className="admin-button" type="submit">Guardar Cambios</button>
+                </form>
+              )}
+            </div>
+          </div>
         )}
       </div>
     </div>

@@ -162,7 +162,7 @@ app.post('/aprobarReserva/:id', async (req, res) => {
   }
 });
 
-// Ruta para confirmar una reserva
+// Ruta para confirmar una reserva y crear un evento
 app.post('/Reservas/:id/confirmar', async (req, res) => {
   const db = loadDB();
   const reservaId = req.params.id;
@@ -177,12 +177,28 @@ app.post('/Reservas/:id/confirmar', async (req, res) => {
     return res.status(400).json({ message: 'La reserva ya ha sido confirmada.' });
   }
 
+  // Crear un nuevo evento basado en la reserva
+  const newEvento = {
+    id: Date.now().toString(),
+    nombre: `Evento de ${reserva.nombre} - ${reserva.tipoEvento}`,
+    imagen: reserva.imagenUrl,
+    fecha: reserva.fecha,
+    hora: reserva.hora,
+    descripcion: `Evento reservado por ${reserva.nombre}`,
+    disponible: true,
+  };
+
+  // Agregar el nuevo evento a la base de datos
+  db.Eventos = db.Eventos || [];
+  db.Eventos.push(newEvento);
+
+  // Marcar la reserva como aprobada
   reserva.aprobada = true;
-  saveDB(db); // Guarda el cambio en la base de datos
+  saveDB(db); // Guarda los cambios en la base de datos
 
   try {
     await conReservationEmail(reserva.email); // Envía el correo de confirmación
-    res.status(200).json({ message: 'Reserva confirmada y correo enviado.', reserva });
+    res.status(200).json({ message: 'Reserva confirmada y correo enviado.', reserva, evento: newEvento });
   } catch (error) {
     console.error('Error al enviar el correo de confirmación de reserva:', error);
     res.status(500).json({ message: 'Reserva confirmada, pero no se pudo enviar el correo.' });

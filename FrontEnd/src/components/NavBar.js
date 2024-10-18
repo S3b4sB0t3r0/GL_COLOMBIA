@@ -61,7 +61,7 @@ function NavBar() {
               </>
             ) : (
               <>
-                <Link to="/login" onClick={handleLogin}>Iniciar Sesión</Link>
+                <Link to="/login" onClick={handleLogin}>Iniciar sesión</Link>
                 <Link to="/register">Registrarse</Link>
               </>
             )}

@@ -4,7 +4,7 @@
       "id": "1727377712599",
       "nombre": "Sebas",
       "correo": "sebaspro22210@gmail.com",
-      "contraseña": "$2a$10$2tA.Dsz30SWFDM9J.N3otOT2tLl1d9G4VftIITcw52uqURNqft9P."
+      "contraseña": "$2a$10$GTPOfdaavoERBCKzpXMIDuMbJRO/pOdAR7jawqaz0pSca6OFTgR3."
     },
     {
       "id": "1727468607464",
@@ -35,6 +35,18 @@
       "nombre": "Valeria",
       "correo": "Valeria1@gmail.com",
       "contraseña": "$2a$10$U4blInR.XKXJRXCu.DdUMeIr0UQ2O3ldy766CP6V81mDfkgeHoLWW"
+    },
+    {
+      "id": "1728483372055",
+      "nombre": "Prueba Final 1",
+      "correo": "testfinal@test.com",
+      "contraseña": "$2a$10$MSMFBych24NU5DMs7Ke.Ku5zp3.viwRnNWM4TUM/E9o8FlfjWA0mG"
+    },
+    {
+      "id": "1728574592341",
+      "nombre": "andres ",
+      "correo": "janio53@misena.edu.co",
+      "contraseña": "$2a$10$ZkyYsbhJ/G4OuqOHp/SU6ed2wuOT2uqgEmenm5pUE9NDgyqy3LWwy"
     }
   ],
   "Eventos": [
@@ -48,7 +60,7 @@
       "disponible": true
     },
     {
-      "id": "1012",
+      "id": "1013",
       "nombre": "MEDO/ANGST",
       "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/2f64b204-cc26-47ec-ab18-8a11fbdd768d.png",
       "fecha": "15/01/2025",
@@ -57,7 +69,7 @@
       "disponible": true
     },
     {
-      "id": "ee2f",
+      "id": "ea2f",
       "nombre": "Briela Ojeda y Lucas Hill",
       "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
       "fecha": "15/01/2025",
@@ -66,7 +78,7 @@
       "disponible": false
     },
     {
-      "id": "a13f",
+      "id": "a23f",
       "nombre": "DE SAL Y SALERO: CAMINOS DE IDA Y VUELTA",
       "imagen": "https://tuboleta.com/imagenes/66ec2367effc7.webp",
       "fecha": "15/01/2025",
@@ -156,18 +168,18 @@
       "disponible": false
     },
     {
-      "id": "b273",
-      "nombre": "UNA IDIOTEZ ELLOS LO SABEN",
-      "imagen": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "fecha": "15/01/2025",
-      "hora": "16:00",
-      "descripcion": "Una idiotez es una comedia distópica que nos cuenta la historia de Theo Glass, un enciclopedista, que ve interrumpida su ardua tarea cuando adquiere a un señor Kwant, un ser que lo sabe todo y que llegó para ayudarlo sin pedir nada a cambio. Theo está completamente fascinado, mientras Anna, su esposa, mira al nuevo integrante de la casa con escepticismo.",
+      "nombre": "Coca 1",
+      "descripcion": "a",
+      "fecha": "2024-10-20",
+      "hora": "18:00",
+      "imagen": "https://tuboleta.com/imagenes/66abe59f1ae57.webp",
+      "id": "1bbc",
       "disponible": true
     }
   ],
   "Teatros": [
     {
-      "id": "db5f",
+      "id": "db5fa",
       "titulo": "Teatro Libre",
       "descripcion": "Un espacio cultural destacado en Chapinero, reconocido por su programación de obras contemporáneas y su ambiente acogedor.",
       "capacidad": 170,
@@ -177,7 +189,7 @@
       "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6952868553767!2d-74.0627524!3d4.648333699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a5efb26e05%3A0xc3f16723ecb271b2!2sTeatro%20Libre%20Chapinero!5e0!3m2!1ses-419!2sco!4v1727706919440!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
     },
     {
-      "id": "db5f",
+      "id": "db5fhh",
       "titulo": "Teatro Colón",
       "descripcion": "Este emblemático teatro es famoso por su arquitectura neoclásica y ofrece una variada programación que incluye óperas, ballets y conciertos.",
       "capacidad": 773,
@@ -187,7 +199,7 @@
       "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9852100542557!2d-74.07699502596337!3d4.596671942552585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a87c70eb87%3A0x710cb31e6067acf0!2zVGVhdHJvIENvbMOzbiBCb2dvdMOh!5e0!3m2!1ses-419!2sco!4v1727707244933!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
     },
     {
-      "id": "db5f",
+      "id": "db5fh",
       "titulo": "Teatro Delia",
       "descripcion": "Con una capacidad para 511 personas, este teatro se ha convertido en un punto de referencia para producciones locales y eventos culturales.",
       "capacidad": 511,
@@ -197,7 +209,7 @@
       "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.980877424688!2d-74.07707582596335!3d4.597448242545975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a7d1e12365%3A0x986ff228d2c19102!2sTeatro%20Delia%20Zapata%20Olivella!5e0!3m2!1ses-419!2sco!4v1727707381073!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
     },
     {
-      "id": "db5f",
+      "id": "db5fg",
       "titulo": "Teatro Nacional",
       "descripcion": "Un importante centro de artes escénicas en Bogotá, con un enfoque en obras clásicas y contemporáneas, y una amplia oferta cultural.",
       "capacidad": 700,
@@ -207,38 +219,133 @@
       "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.4949877157287!2d-74.06266022596306!3d4.68369314180674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9ae98269a7ab%3A0x34b87beaa975f4e8!2sTeatro%20Nacional%20La%20Castellana!5e0!3m2!1ses-419!2sco!4v1727707486548!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
     },
     {
-      "id": "db5f",
       "titulo": "Teatro Lozano",
       "descripcion": "Este teatro es conocido por sus producciones de teatro clásico y contemporáneo, así como por su ambiente íntimo y acogedor.",
-      "capacidad": 608,
+      "capacidad": "608",
       "telefono": "6013737867",
       "direccion": "https://maps.app.goo.gl/eTM2wHtb6Z2NzTPN6",
       "imagen": "https://soyteatro.com/wp-content/uploads/2016/06/teatro-bernardo.jpg",
-      "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6688.0886313381225!2d-74.08230263718187!3d4.636622470832832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bd2bd7a88bb%3A0x532fef5ce6a615f!2sTeatro%20Bernardo%20Romero%20Lozano!5e0!3m2!1ses-419!2sco!4v1727707628265!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
+      "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6688.0886313381225!2d-74.08230263718187!3d4.636622470832832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9bd2bd7a88bb%3A0x532fef5ce6a615f!2sTeatro%20Bernardo%20Romero%20Lozano!5e0!3m2!1ses-419!2sco!4v1727707628265!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>",
+      "id": "db5ff"
     }
   ],
   "Reservas": [
     {
-      "id": "1727728604200",
-      "nombre": "Coca",
+      "id": "1728352197533",
+      "nombre": "Prueba 12",
       "email": "sebaspro22210@gmail.com",
       "fecha": "2024-10-10",
       "hora": "06:00",
       "teatro": "Teatro Libre",
       "tipoEvento": "Obra de teatro",
       "duracion": "2",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp"
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": true,
+      "rechazada": false
     },
     {
-      "id": "1727730357251",
-      "nombre": "puta",
-      "email": "nicolasboterogordo@gmail.com",
+      "id": "1728479419472",
+      "nombre": "Prueba reserva 1",
+      "email": "sebaspro22210@gmail.com",
       "fecha": "2024-10-10",
-      "hora": "10:00",
+      "hora": "18:00",
+      "teatro": "Teatro Colon",
+      "tipoEvento": "Obra de teatro",
+      "duracion": "1",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": true,
+      "rechazada": false
+    },
+    {
+      "id": "1728483423057",
+      "nombre": "Prueba final 1",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2024-10-11",
+      "hora": "07:00",
       "teatro": "Teatro Libre",
       "tipoEvento": "Obra de teatro",
+      "duracion": "1",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": true,
+      "rechazada": false
+    },
+    {
+      "id": "1728574663111",
+      "nombre": "jorge",
+      "email": "janio53@misena.edu.co",
+      "fecha": "2024-11-09",
+      "hora": "10:00",
+      "teatro": "Teatro Colon",
+      "tipoEvento": "Obra Musical",
       "duracion": "2",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp"
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": false,
+      "rechazada": false
+    },
+    {
+      "id": "1728574663967",
+      "nombre": "jorge",
+      "email": "janio53@misena.edu.co",
+      "fecha": "2024-11-09",
+      "hora": "10:00",
+      "teatro": "Teatro Colon",
+      "tipoEvento": "Obra Musical",
+      "duracion": "2",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": true,
+      "rechazada": false
+    },
+    {
+      "id": "1728576422770",
+      "nombre": "Jorge",
+      "email": "Jorge@gmail.com",
+      "fecha": "2024-11-11",
+      "hora": "18:00",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Obra de teatro",
+      "duracion": "1",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": false,
+      "rechazada": false
+    },
+    {
+      "id": "1728576428421",
+      "nombre": "Jorge",
+      "email": "Jorge@gmail.com",
+      "fecha": "2024-11-11",
+      "hora": "18:00",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Obra de teatro",
+      "duracion": "1",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": false,
+      "rechazada": false
+    },
+    {
+      "id": "1728576908730",
+      "nombre": "Coca",
+      "email": "janio53@misena.edu.co",
+      "fecha": "2024-12-18",
+      "hora": "15:00",
+      "teatro": "Teatro Colon",
+      "tipoEvento": "Obra de teatro",
+      "duracion": "5",
+      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
+      "aprobada": false,
+      "rechazada": false
+    },
+    {
+      "id": "1729289065116",
+      "nombre": "Sebastian Botero Gordo ",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2024-10-20",
+      "hora": "18:11",
+      "teatro": "Teatro Colon",
+      "tipoEvento": "Obra Musical",
+      "duracion": "1",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "aprobada": false,
+      "rechazada": false
     }
   ],
   "Contactos": [
@@ -253,6 +360,42 @@
       "nombre": "Valeria",
       "email": "sebaspro22210@gmail.com",
       "mensaje": "prueba definitiva 1"
+    },
+    {
+      "id": "1728352115175",
+      "nombre": "Jorge",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "hola"
+    },
+    {
+      "id": "1728483330211",
+      "nombre": "Prueba Final 1",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba Final 1"
+    },
+    {
+      "id": "1728574479567",
+      "nombre": "Jorge",
+      "email": "janio53@misena.edu.co",
+      "mensaje": "<q3zwextygbounhinhubygtcrdxsezwaexrtyuonihbgytcrdxsed5rft7 "
+    },
+    {
+      "id": "1728574504011",
+      "nombre": "Jorge",
+      "email": "janio53@misena.edu.co",
+      "mensaje": "wqerhqgw3ar"
+    },
+    {
+      "id": "1728574505163",
+      "nombre": "Jorge",
+      "email": "janio53@misena.edu.co",
+      "mensaje": "wqerhqgw3ar"
+    },
+    {
+      "id": "1728574505668",
+      "nombre": "Jorge",
+      "email": "janio53@misena.edu.co",
+      "mensaje": "wqerhqgw3ar"
     }
   ]
 }
