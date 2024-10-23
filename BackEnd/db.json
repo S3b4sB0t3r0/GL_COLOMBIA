@@ -191,18 +191,27 @@
       "hora": "18:00",
       "descripcion": "Evento reservado por Jorge",
       "disponible": true
+    },
+    {
+      "id": "1729692247241",
+      "nombre": "Evento de Sebas - Obra de teatro",
+      "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "fecha": "2024-10-22",
+      "hora": "10:00",
+      "descripcion": "Evento reservado por Sebas",
+      "disponible": true
     }
   ],
   "Teatros": [
     {
-      "id": "db5fa",
       "titulo": "Teatro Libre",
       "descripcion": "Un espacio cultural destacado en Chapinero, reconocido por su programación de obras contemporáneas y su ambiente acogedor.",
-      "capacidad": 170,
+      "capacidad": "170",
       "telefono": "6018105451",
       "direccion": "https://maps.app.goo.gl/WbPhg7ug4RhCKx286",
       "imagen": "https://bogotateatralycircense.gov.co/sites/default/files/styles/900_x_515/public/img_salas/Teatro%20Libre%20Chapinero%20-%20Foto%20%40Sr.Mao%20-%2016%20copia.jpg?itok=3VMwVZ6M",
-      "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6952868553767!2d-74.0627524!3d4.648333699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a5efb26e05%3A0xc3f16723ecb271b2!2sTeatro%20Libre%20Chapinero!5e0!3m2!1ses-419!2sco!4v1727706919440!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>"
+      "mapa": "<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.6952868553767!2d-74.0627524!3d4.648333699999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a5efb26e05%3A0xc3f16723ecb271b2!2sTeatro%20Libre%20Chapinero!5e0!3m2!1ses-419!2sco!4v1727706919440!5m2!1ses-419!2sco' width='400' height='300' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe>",
+      "id": "db5fa"
     },
     {
       "id": "db5fhh",
@@ -307,7 +316,8 @@
       "tipoEvento": "Obra de teatro",
       "duracion": "1",
       "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
-      "estado": null
+      "estado": true,
+      "aprobada": true
     },
     {
       "id": "1729557231071",

@@ -14,6 +14,10 @@ function Admin() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1); // Asegúrate de que esto esté aquí
   const itemsPerPage = 6; // Número de ítems por página
+  const [notificationVisible, setNotificationVisible] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
+  const [notificationCallback, setNotificationCallback] = useState(null);
+
 
   const apiUrl = 'http://localhost:4001';
   const backendUrl = 'http://localhost:4000';
@@ -49,60 +53,81 @@ function Admin() {
     }
   };
 
-  const eliminarEvento = async (id) => {
-    await fetch(`${apiUrl}/Eventos/${id}`, { method: 'DELETE' });
-    cargarDatos();
-  };
+// Para eliminar un evento
+const eliminarEvento = async (id) => {
+  showNotification("¿Estás seguro de que deseas eliminar este evento?", async (accepted) => {
+    if (accepted) {
+      await fetch(`${apiUrl}/Eventos/${id}`, { method: 'DELETE' });
+      cargarDatos();
+    }
+  });
+};
 
-  const eliminarTeatro = async (id) => {
-    await fetch(`${apiUrl}/Teatros/${id}`, { method: 'DELETE' });
-    cargarDatos();
-  };
+// Para eliminar un teatro
+const eliminarTeatro = async (id) => {
+  showNotification("¿Estás seguro de que deseas eliminar este teatro?", async (accepted) => {
+    if (accepted) {
+      await fetch(`${apiUrl}/Teatros/${id}`, { method: 'DELETE' });
+      cargarDatos();
+    }
+  });
+};
 
-  const agregarEvento = async (e) => {
-    e.preventDefault();
-    const newEvento = {
-      nombre: e.target.nombre.value,
-      descripcion: e.target.descripcion.value,
-      fecha: e.target.fecha.value,
-      hora: e.target.hora.value,
-      imagen: e.target.imagen.value,
-      disponible: true,
-    };
+// Para agregar un nuevo evento
+const agregarEvento = async (e) => {
+  e.preventDefault();
+  showNotification("¿Estás seguro de que deseas agregar este nuevo evento?", async (accepted) => {
+    if (accepted) {
+      const newEvento = {
+        nombre: e.target.nombre.value,
+        descripcion: e.target.descripcion.value,
+        fecha: e.target.fecha.value,
+        hora: e.target.hora.value,
+        imagen: e.target.imagen.value,
+        disponible: true,
+      };
+      
+      await fetch(`${apiUrl}/Eventos`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newEvento),
+      });
+      cargarDatos();
+      e.target.reset();
+    }
+  });
+};
 
-    await fetch(`${apiUrl}/Eventos`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newEvento),
-    });
-    cargarDatos();
-    e.target.reset();
-  };
+// Para agregar un nuevo teatro
+const agregarTeatro = async (e) => {
+  e.preventDefault();
+  showNotification("¿Estás seguro de que deseas agregar este nuevo teatro?", async (accepted) => {
+    if (accepted) {
+      const newTeatro = {
+        titulo: e.target.titulo.value,
+        descripcion: e.target.descripcion.value,
+        capacidad: e.target.capacidad.value,
+        telefono: e.target.telefono.value,
+        direccion: e.target.direccion.value,
+        imagen: e.target.imagen.value,
+        mapa: e.target.mapa.value,
+      };
+      
+      await fetch(`${apiUrl}/Teatros`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTeatro),
+      });
+      cargarDatos();
+      e.target.reset();
+    }
+  });
+};
 
-  const agregarTeatro = async (e) => {
-    e.preventDefault();
-    const newTeatro = {
-      titulo: e.target.titulo.value,
-      descripcion: e.target.descripcion.value,
-      capacidad: e.target.capacidad.value,
-      telefono: e.target.telefono.value,
-      direccion: e.target.direccion.value,
-      imagen: e.target.imagen.value,
-      mapa: e.target.mapa.value,
-    };
-
-    await fetch(`${apiUrl}/Teatros`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newTeatro),
-    });
-    cargarDatos();
-    e.target.reset();
-  };
-
-  const cambiarDisponibilidad = async (id, disponible) => {
-    const confirm = window.confirm(`¿Estás seguro de que deseas cambiar la disponibilidad?`);
-    if (confirm) {
+// Para cambiar la disponibilidad de un evento
+const cambiarDisponibilidad = async (id, disponible) => {
+  showNotification("¿Estás seguro de que deseas cambiar la disponibilidad?", async (accepted) => {
+    if (accepted) {
       await fetch(`${apiUrl}/Eventos/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -110,58 +135,60 @@ function Admin() {
       });
       cargarDatos();
     }
-  };
+  });
+};
 
-  const confirmarReserva = async (id) => {
-    const confirm = window.confirm(`¿Estás seguro de que deseas confirmar la reserva ${id}?`);
-    if (confirm) {
+// Para confirmar una reserva
+const confirmarReserva = async (id) => {
+  showNotification(`¿Estás seguro de que deseas confirmar la reserva ${id}?`, async (accepted) => {
+    if (accepted) {
       try {
         const response = await fetch(`${backendUrl}/Reservas/${id}/confirmar`, { method: 'POST' });
         if (!response.ok) throw new Error('Error al confirmar la reserva');
-        
-        // Cambiamos el estado de la reserva a true (confirmada)
         await fetch(`${apiUrl}/Reservas/${id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ estado: true }),
         });
-  
-        alert(`Reserva ${id} aceptada.`);
         cargarDatos();
       } catch (error) {
         console.error(error);
         alert(error.message);
       }
     }
-  };
-  
-  const rechazarReserva = async (id) => {
-    const confirm = window.confirm(`¿Estás seguro de que deseas rechazar la reserva ${id}?`);
-    if (confirm) {
+  });
+};
+
+// Para rechazar una reserva
+const rechazarReserva = async (id) => {
+  showNotification(`¿Estás seguro de que deseas rechazar la reserva ${id}?`, async (accepted) => {
+    if (accepted) {
       try {
         const response = await fetch(`${backendUrl}/Reservas/${id}/rechazar`, { method: 'POST' });
         if (!response.ok) throw new Error('Error al rechazar la reserva');
-  
-        // Cambiamos el estado de la reserva a false (rechazada)
         await fetch(`${apiUrl}/Reservas/${id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ estado: false }),
         });
-  
-        alert(`Reserva ${id} rechazada.`);
         cargarDatos();
       } catch (error) {
         console.error(error);
         alert(error.message);
       }
     }
-  };
+  });
+};
 
-  const eliminarReserva = async (id) => {
-    await fetch(`${apiUrl}/Reservas/${id}`, { method: 'DELETE' });
-    cargarDatos();
-  };
+// Para eliminar una reserva
+const eliminarReserva = async (id) => {
+  showNotification("¿Estás seguro de que deseas eliminar esta reserva?", async (accepted) => {
+    if (accepted) {
+      await fetch(`${apiUrl}/Reservas/${id}`, { method: 'DELETE' });
+      cargarDatos();
+    }
+  });
+};
 
   const abrirModalEvento = (evento) => {
     setEventoEditando(evento);
@@ -179,45 +206,55 @@ function Admin() {
     setTeatroEditando(null);
   };
 
-  const editarEvento = async (e) => {
-    e.preventDefault();
-    const updatedEvento = {
-      nombre: e.target.nombre.value,
-      descripcion: e.target.descripcion.value,
-      fecha: e.target.fecha.value,
-      hora: e.target.hora.value,
-      imagen: e.target.imagen.value,
-    };
+// Para editar un evento
+const editarEvento = async (e) => {
+  e.preventDefault();
+  showNotification("¿Estás seguro de que deseas guardar los cambios en este evento?", async (accepted) => {
+    if (accepted) {
+      const updatedEvento = {
+        nombre: e.target.nombre.value,
+        descripcion: e.target.descripcion.value,
+        fecha: e.target.fecha.value,
+        hora: e.target.hora.value,
+        imagen: e.target.imagen.value,
+      };
+      
+      await fetch(`${apiUrl}/Eventos/${eventoEditando.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedEvento),
+      });
+      cargarDatos();
+      cerrarModal();
+    }
+  });
+};
 
-    await fetch(`${apiUrl}/Eventos/${eventoEditando.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedEvento),
-    });
-    cargarDatos();
-    cerrarModal();
-  };
-
-  const editarTeatro = async (e) => {
-    e.preventDefault();
-    const updatedTeatro = {
-      titulo: e.target.titulo.value,
-      descripcion: e.target.descripcion.value,
-      capacidad: e.target.capacidad.value,
-      telefono: e.target.telefono.value,
-      direccion: e.target.direccion.value,
-      imagen: e.target.imagen.value,
-      mapa: e.target.mapa.value,
-    };
-
-    await fetch(`${apiUrl}/Teatros/${teatroEditando.id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedTeatro),
-    });
-    cargarDatos();
-    cerrarModal();
-  };
+// Para editar un teatro
+const editarTeatro = async (e) => {
+  e.preventDefault();
+  showNotification("¿Estás seguro de que deseas guardar los cambios en este teatro?", async (accepted) => {
+    if (accepted) {
+      const updatedTeatro = {
+        titulo: e.target.titulo.value,
+        descripcion: e.target.descripcion.value,
+        capacidad: e.target.capacidad.value,
+        telefono: e.target.telefono.value,
+        direccion: e.target.direccion.value,
+        imagen: e.target.imagen.value,
+        mapa: e.target.mapa.value,
+      };
+      
+      await fetch(`${apiUrl}/Teatros/${teatroEditando.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedTeatro),
+      });
+      cargarDatos();
+      cerrarModal();
+    }
+  });
+};
 
 
     // Función para manejar el cambio en el campo de búsqueda
@@ -246,6 +283,26 @@ function Admin() {
 
   const totalPages = Math.ceil(eventos.length / itemsPerPage);
 
+
+
+
+
+const showNotification = (message, callback) => {
+  setNotificationMessage(message);
+  setNotificationCallback(() => callback);
+  setNotificationVisible(true);
+};
+
+const handleNotificationAccept = () => {
+  if (notificationCallback) notificationCallback(true);
+  setNotificationVisible(false);
+};
+
+const handleNotificationReject = () => {
+  if (notificationCallback) notificationCallback(false);
+  setNotificationVisible(false);
+};
+
   return (
     <div className="admin-container">
       <nav className="admin-nav">
@@ -272,6 +329,20 @@ function Admin() {
           onChange={handleSearchChange}
           className="admin-search-input"
         />
+          
+          {notificationVisible && (
+          <div className="notification-modal">
+            <div className="notification-modal-content">
+              <span className="notification-modal-close" onClick={() => setNotificationVisible(false)}>&times;</span>
+              <p>{notificationMessage}</p>
+              <div className="notification-modal-buttons">
+                <button className="admin-button confirmar-button" onClick={handleNotificationAccept}>Aceptar</button>
+                <button className="admin-button rechazar-button" onClick={handleNotificationReject}>Rechazar</button>
+              </div>
+            </div>
+          </div>
+        )}
+
 
         {activeSection === 'usuarios' && (
           <section id="admin-usuarios">

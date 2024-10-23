@@ -251,3 +251,48 @@
 .pagination button.active {
   background-color: #000000;
 }
+
+.notification-modal {
+  display: block;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.notification-modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.notification-modal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.notification-modal-buttons .admin-button {
+  width: 100px;
+  margin: 0 10px;
+}
+
+.notification-modal-close {
+  float: right;
+  font-size: 28px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.notification-modal-close:hover {
+  color: black;
+}
