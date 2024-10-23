@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Registro.css';
-import logoBackground from '../image/logo/5.png';
+import logoBackground from '../image/Fondo/1.png';
 
 function Registro() {
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -14,6 +15,11 @@ function Registro() {
 
     if (data.password !== data["confirm-password"]) {
       setMessage('Las contraseñas no coinciden');
+      setMessageType('warning');
+      setTimeout(() => {
+        setMessage('');
+        setMessageType('');
+      }, 5000); // 5 segundos
       return;
     }
 
@@ -32,16 +38,25 @@ function Registro() {
 
       if (response.ok) {
         setMessage(result.message);
+        setMessageType('success');
         setTimeout(() => {
           navigate('/login');
-        }, 1000);
+        }, 5000); // Redirige después de 5 segundos
       } else {
         setMessage(result.message || 'Hubo un error en el registro');
+        setMessageType('error');
       }
     } catch (error) {
       console.error('Error:', error);
       setMessage('Hubo un error al conectar con el servidor');
+      setMessageType('error');
     }
+
+    // Limpia el mensaje después de 5 segundos
+    setTimeout(() => {
+      setMessage('');
+      setMessageType('');
+    }, 5000);
   };
 
   return (
@@ -68,7 +83,11 @@ function Registro() {
         <button type="submit">REGISTRARME</button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && (
+        <div className={`notification ${messageType}`} data-id={`registro.${messageType}`}>
+          {message}
+        </div>
+      )}
     </div>
   );
 }

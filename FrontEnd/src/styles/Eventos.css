@@ -5,10 +5,29 @@
   min-height: 100vh;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px; /* Incrementa el margen inferior a 30px */
+  padding: 0 20px;
+}
+
+
+
 .eventos-container h2 {
   font-size: 36px;
-  margin-bottom: 30px;
+  margin: 0;
   color: #333;
+}
+
+.buscador {
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .eventos-grid {
@@ -16,20 +35,22 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  padding: 0 20px;
 }
 
 .evento-card {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suavizada */
   width: 250px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadido box-shadow */
   cursor: pointer;
 }
 
 .evento-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Mejora en sombra al hover */
 }
 
 .evento-imagen {
@@ -49,7 +70,6 @@
   color: #777;
 }
 
-/* Estilos del modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -67,7 +87,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  max-width: 800px; /* Ampliado para que sea más largo */
+  max-width: 800px;
   width: 100%;
   position: relative;
 }
@@ -82,18 +102,18 @@
 
 .modal-inner {
   display: flex;
-  flex-direction: row; /* Disposición en fila */
+  flex-direction: row;
 }
 
 .modal-imagen {
-  width: 300px; /* Ancho fijo para la imagen */
+  width: 300px;
   height: 300px;
   object-fit: cover;
-  margin-right: 20px; /* Espaciado entre imagen y contenido */
+  margin-right: 20px;
 }
 
 .modal-info {
-  flex: 1; /* Toma el resto del espacio */
+  flex: 1;
 }
 
 .modal-content h2 {
@@ -117,5 +137,49 @@
 }
 
 .comprar-boleta-btn:hover {
+  background-color: #333;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .evento-card {
+    width: 100%;
+  }
+
+  .modal-inner {
+    flex-direction: column;
+  }
+
+  .modal-imagen {
+    width: 100%;
+    height: auto;
+    margin-right: 0;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination-button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
   background-color: #000000;
 }
+
+.pagination-button.active {
+  background-color: #000000;
+  font-weight: bold;
+}
+

@@ -1,3 +1,4 @@
+/* General Styles */
 .admin-container {
   display: flex;
   font-family: Arial, sans-serif;
@@ -51,24 +52,11 @@
   margin-top: 20px;
 }
 
-.admin-table th, .admin-table td {
+.admin-table th,
+.admin-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
-}
-
-.admin-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.admin-button:hover {
-  background-color: #45a049;
 }
 
 .admin-input {
@@ -77,4 +65,189 @@
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+/* Button Styles */
+.admin-button {
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100px; /* Tamaño uniforme */
+  margin: 0 5px; /* Agregar margen de 5px entre cada botón */
+}
+
+.admin-button:hover {
+  opacity: 0.8;
+}
+
+/* Custom button colors */
+.activar-button {
+  background-color: #4CAF50; /* Green for 'Activar' */
+}
+
+.eliminar-button {
+  background-color: #f44336; /* Red for 'Eliminar' */
+}
+
+.editar-button {
+  background-color: #2196F3; /* Blue for 'Editar' */
+}
+
+.confirmar-button {
+  background-color: #00ba3e; /* Light Blue for 'Confirmar' */
+}
+
+.rechazar-button {
+  background-color: #FF9800; /* Orange for 'Rechazar' */
+}
+
+.agregar-button {
+  background-color: #8BC34A; /* Light Green for 'Agregar' */
+}
+
+.modal-button {
+  background-color: #9C27B0; /* Purple for modal button */
+}
+
+/* Form Styles */
+.admin-event-form,
+.admin-teatro-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-event-form button,
+.admin-teatro-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Button spacing and uniform size */
+.admin-event-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.admin-event-buttons .admin-button {
+  width: 120px; /* Tamaño uniforme para los botones en la sección de eventos */
+}
+
+.admin-event-form button:hover,
+.admin-teatro-form button:hover {
+  background-color: #45a049;
+}
+
+/* Modal Styles */
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Search Input Style */
+.admin-search-input {
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 99%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Unique Table Styles */
+#admin-usuarios-table,
+#admin-eventos-table,
+#admin-teatros-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#admin-usuarios-table th,
+#admin-eventos-table th,
+#admin-teatros-table th,
+#admin-usuarios-table td,
+#admin-eventos-table td,
+#admin-teatros-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.admin-button-save {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button.active {
+  background-color: #000000;
 }

@@ -1,15 +1,15 @@
 /* Contenedor principal del formulario */
 .contact-container {
-  text-align: center;
-  color: rgb(0, 0, 0);
-  background-color: #ffffff;
-  padding: 40px;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('../image/Fondo/1.png'); /* Imagen de fondo */
+  background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+  background-position: center;
+  background-repeat: no-repeat;
+  color: rgb(0, 0, 0);
 }
 
 .contact-container h2 {
@@ -72,4 +72,20 @@
 #contact-form input::placeholder,
 #contact-form textarea::placeholder {
   color: #bbb;
+}
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1000;
+}
+.error {
+  background-color: rgba(255, 0, 0, 0.9); /* Rojo para error */
+  color: white;
 }

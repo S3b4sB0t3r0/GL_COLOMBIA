@@ -4,6 +4,9 @@ import '../styles/Eventos.css';
 function Eventos() {
   const [eventos, setEventos] = useState([]);
   const [eventoSeleccionado, setEventoSeleccionado] = useState(null);
+  const [busqueda, setBusqueda] = useState('');
+  const [paginaActual, setPaginaActual] = useState(1);
+  const eventosPorPagina = 6;
 
   useEffect(() => {
     const cargarEventos = async () => {
@@ -33,12 +36,36 @@ function Eventos() {
     }
   };
 
+  // Filtrar eventos basados en la búsqueda
+  const eventosFiltrados = eventos.filter(evento =>
+    evento.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
+  // Paginación
+  const indexOfLastEvento = paginaActual * eventosPorPagina;
+  const indexOfFirstEvento = indexOfLastEvento - eventosPorPagina;
+  const eventosActuales = eventosFiltrados.slice(indexOfFirstEvento, indexOfLastEvento);
+  const totalPaginas = Math.ceil(eventosFiltrados.length / eventosPorPagina);
+
+  const irANuevaPagina = (numeroPagina) => {
+    setPaginaActual(numeroPagina);
+  };
+
   return (
     <div className="eventos-container">
-      <h2>Próximos Eventos</h2>
+      <div className="header">
+        <h2>Próximos Eventos</h2>
+        <input
+          type="text"
+          placeholder="Buscar eventos..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+          className="buscador"
+        />
+      </div>
       <div className="eventos-grid">
-        {Array.isArray(eventos) && eventos.length > 0 ? (
-          eventos.map((evento) => (
+        {eventosActuales.length > 0 ? (
+          eventosActuales.map((evento) => (
             <div key={evento.id} className="evento-card" onClick={() => abrirModal(evento)}>
               <img src={evento.imagen} alt={evento.nombre} className="evento-imagen" />
               <h3>{evento.nombre}</h3>
@@ -49,6 +76,19 @@ function Eventos() {
         ) : (
           <p>No hay eventos disponibles.</p>
         )}
+      </div>
+
+      {/* Controles de paginación */}
+      <div className="pagination">
+        {Array.from({ length: totalPaginas }, (_, index) => (
+          <button 
+            key={index + 1} 
+            onClick={() => irANuevaPagina(index + 1)} 
+            className={`pagination-button ${paginaActual === index + 1 ? 'active' : ''}`}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
 
       {eventoSeleccionado && (

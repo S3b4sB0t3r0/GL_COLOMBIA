@@ -11,6 +11,9 @@ function Admin() {
   const [modalVisible, setModalVisible] = useState(false);
   const [eventoEditando, setEventoEditando] = useState(null);
   const [teatroEditando, setTeatroEditando] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1); // Asegúrate de que esto esté aquí
+  const itemsPerPage = 6; // Número de ítems por página
 
   const apiUrl = 'http://localhost:4001';
   const backendUrl = 'http://localhost:4000';
@@ -115,6 +118,14 @@ function Admin() {
       try {
         const response = await fetch(`${backendUrl}/Reservas/${id}/confirmar`, { method: 'POST' });
         if (!response.ok) throw new Error('Error al confirmar la reserva');
+        
+        // Cambiamos el estado de la reserva a true (confirmada)
+        await fetch(`${apiUrl}/Reservas/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ estado: true }),
+        });
+  
         alert(`Reserva ${id} aceptada.`);
         cargarDatos();
       } catch (error) {
@@ -123,13 +134,21 @@ function Admin() {
       }
     }
   };
-
+  
   const rechazarReserva = async (id) => {
     const confirm = window.confirm(`¿Estás seguro de que deseas rechazar la reserva ${id}?`);
     if (confirm) {
       try {
         const response = await fetch(`${backendUrl}/Reservas/${id}/rechazar`, { method: 'POST' });
         if (!response.ok) throw new Error('Error al rechazar la reserva');
+  
+        // Cambiamos el estado de la reserva a false (rechazada)
+        await fetch(`${apiUrl}/Reservas/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ estado: false }),
+        });
+  
         alert(`Reserva ${id} rechazada.`);
         cargarDatos();
       } catch (error) {
@@ -200,6 +219,33 @@ function Admin() {
     cerrarModal();
   };
 
+
+    // Función para manejar el cambio en el campo de búsqueda
+    const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value.toLowerCase());
+    };
+  
+    // Filtrar los datos de acuerdo al input de búsqueda
+    const filterData = (data, keys) => {
+      return data.filter((item) => 
+        keys.some(key => item[key].toLowerCase().includes(searchQuery))
+      );
+    };
+
+
+
+      // Funciones de paginación
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const getPaginatedData = (data) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return data.slice(startIndex, startIndex + itemsPerPage);
+  };
+
+  const totalPages = Math.ceil(eventos.length / itemsPerPage);
+
   return (
     <div className="admin-container">
       <nav className="admin-nav">
@@ -218,10 +264,19 @@ function Admin() {
       <div className="admin-content">
         <h1 className="admin-section-title">Panel de Administración</h1>
 
+        {/* Input de búsqueda */}
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="admin-search-input"
+        />
+
         {activeSection === 'usuarios' && (
           <section id="admin-usuarios">
             <h2 className="admin-section-title">Usuarios Registrados</h2>
-            <table className="admin-table">
+            <table className="admin-table" id="admin-usuarios-table">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -229,7 +284,7 @@ function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {usuarios.map(usuario => (
+                {filterData(usuarios, ['nombre', 'correo']).map(usuario => (
                   <tr key={usuario.id}>
                     <td>{usuario.nombre}</td>
                     <td>{usuario.correo}</td>
@@ -240,9 +295,11 @@ function Admin() {
           </section>
         )}
 
-        {activeSection === 'eventos' && (
+
+{activeSection === 'eventos' && (
           <section id="admin-eventos">
-            <table className="admin-table">
+            <h2 className="admin-section-title">Eventos</h2>
+            <table className="admin-table" id="admin-eventos-table">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -252,22 +309,31 @@ function Admin() {
                 </tr>
               </thead>
               <tbody>
-                {eventos.map(evento => (
+                {getPaginatedData(filterData(eventos, ['nombre', 'fecha'])).map(evento => (
                   <tr key={evento.id}>
                     <td>{evento.nombre}</td>
                     <td>{evento.fecha}</td>
                     <td>{evento.disponible ? 'Disponible' : 'No disponible'}</td>
                     <td>
-                      <button className="admin-button" onClick={() => cambiarDisponibilidad(evento.id, evento.disponible)}>
+                      <button className="admin-button activar-button" onClick={() => cambiarDisponibilidad(evento.id, evento.disponible)}>
                         {evento.disponible ? 'Desactivar' : 'Activar'}
                       </button>
-                      <button className="admin-button" onClick={() => eliminarEvento(evento.id)}>Eliminar</button>
-                      <button className="admin-button" onClick={() => abrirModalEvento(evento)}>Editar</button>
+                      <button className="admin-button eliminar-button" onClick={() => eliminarEvento(evento.id)}>Eliminar</button>
+                      <button className="admin-button editar-button" onClick={() => abrirModalEvento(evento)}>Editar</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {/* Paginación */}
+            <div className="pagination">
+              {[...Array(totalPages)].map((_, index) => (
+                <button key={index} onClick={() => handlePageChange(index + 1)} className={currentPage === index + 1 ? 'active' : ''}>
+                  {index + 1}
+                </button>
+              ))}
+            </div>
           </section>
         )}
 
@@ -285,35 +351,48 @@ function Admin() {
           </section>
         )}
 
-        {activeSection === 'teatros' && (
-          <section id="admin-teatros">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Título</th>
-                  <th>Descripción</th>
-                  <th>Capacidad</th>
-                  <th>Teléfono</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {teatros.map(teatro => (
-                  <tr key={teatro.id}>
-                    <td>{teatro.titulo}</td>
-                    <td>{teatro.descripcion}</td>
-                    <td>{teatro.capacidad}</td>
-                    <td>{teatro.telefono}</td>
-                    <td>
-                      <button className="admin-button" onClick={() => eliminarTeatro(teatro.id)}>Eliminar</button>
-                      <button className="admin-button" onClick={() => abrirModalTeatro(teatro)}>Editar</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        )}
+
+
+{activeSection === 'teatros' && (
+  <section id="admin-teatros">
+    <h2 className="admin-section-title">Teatros</h2>
+    <table className="admin-table" id="admin-teatros-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Capacidad</th>
+          <th>Teléfono</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {getPaginatedData(filterData(teatros, ['titulo', 'descripcion', 'telefono'])).map(teatro => (
+          <tr key={teatro.id}>
+            <td>{teatro.titulo}</td>
+            <td>{teatro.descripcion}</td>
+            <td>{teatro.capacidad}</td>
+            <td>{teatro.telefono}</td>
+            <td>
+              <button className="admin-button editar-button" onClick={() => abrirModalTeatro(teatro)}>Editar</button>
+              <button className="admin-button eliminar-button" onClick={() => eliminarTeatro(teatro.id)}>Eliminar</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {/* Paginación */}
+    <div className="pagination">
+      {[...Array(Math.ceil(teatros.length / itemsPerPage))].map((_, index) => (
+        <button key={index} onClick={() => handlePageChange(index + 1)} className={currentPage === index + 1 ? 'active' : ''}>
+          {index + 1}
+        </button>
+      ))}
+    </div>
+  </section>
+)}
+
 
         {activeSection === 'agregarteatros' && (
           <section id="admin-teatros">
@@ -329,69 +408,99 @@ function Admin() {
                         <button className="admin-button" type="submit">Agregar Teatro</button>
                       </form>
                       </section>
-        )}
+                    )}
 
-        {activeSection === 'contacto' && (
-          <section id="admin-contacto">
-            <h2 className="admin-section-title">Mensajes de Contacto</h2>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Mensaje</th>
-                </tr>
-              </thead>
-              <tbody>
-                {contactos.map(mensaje => (
-                  <tr key={mensaje.id}>
-                    <td>{mensaje.nombre}</td>
-                    <td>{mensaje.email}</td>
-                    <td>{mensaje.mensaje}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        )}
+{activeSection === 'contacto' && (
+  <section id="admin-contacto">
+    <h2 className="admin-section-title">Mensajes de Contacto</h2>
+    <table className="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Mensaje</th>
+        </tr>
+      </thead>
+      <tbody>
+        {getPaginatedData(filterData(contactos, ['nombre', 'email'])).map(mensaje => (
+          <tr key={mensaje.id}>
+            <td>{mensaje.nombre}</td>
+            <td>{mensaje.email}</td>
+            <td>{mensaje.mensaje}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
 
-        {activeSection === 'reservas' && (
-          <section id="admin-reservas">
-            <h2 className="admin-section-title">Reservas</h2>
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Fecha</th>
-                  <th>Hora</th>
-                  <th>Teatro</th>
-                  <th>Tipo de Evento</th>
-                  <th>Duración</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {reservas.map(reserva => (
-                  <tr key={reserva.id}>
-                    <td>{reserva.nombre}</td>
-                    <td>{reserva.email}</td>
-                    <td>{reserva.fecha}</td>
-                    <td>{reserva.hora}</td>
-                    <td>{reserva.teatro}</td>
-                    <td>{reserva.tipoEvento}</td>
-                    <td>{reserva.duracion}</td>
-                    <td>
-                      <button className="admin-button" onClick={() => confirmarReserva(reserva.id)}>Confirmar</button>
-                      <button className="admin-button" onClick={() => rechazarReserva(reserva.id)}>Rechazar</button>
-                      <button className="admin-button" onClick={() => eliminarReserva(reserva.id)}>Eliminar</button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </section>
-        )}
+    {/* Paginación */}
+    <div className="pagination">
+      {[...Array(Math.ceil(filterData(contactos, ['nombre', 'email']).length / itemsPerPage))].map((_, index) => (
+        <button key={index} onClick={() => handlePageChange(index + 1)} className={currentPage === index + 1 ? 'active' : ''}>
+          {index + 1}
+        </button>
+      ))}
+    </div>
+  </section>
+)}
+
+
+{activeSection === 'reservas' && (
+  <section id="admin-reservas">
+    <h2 className="admin-section-title">Reservas</h2>
+    <table className="admin-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Teatro</th>
+          <th>Tipo de Evento</th>
+          <th>Duración</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {getPaginatedData(filterData(reservas, ['nombre', 'email', 'teatro', 'tipoEvento', 'duracion'])).map(reserva => (
+          <tr key={reserva.id}>
+            <td>{reserva.nombre}</td>
+            <td>{reserva.email}</td>
+            <td>{reserva.fecha}</td>
+            <td>{reserva.hora}</td>
+            <td>{reserva.teatro}</td>
+            <td>{reserva.tipoEvento}</td>
+            <td>{reserva.duracion}</td>
+            <td>
+              {reserva.estado === null ? 'Falta' : reserva.estado ? 'Confirmada' : 'Rechazada'}
+            </td>
+            <td>
+              {reserva.estado === null && (
+                <>
+                  <button className="admin-button confirmar-button" onClick={() => confirmarReserva(reserva.id)}>Confirmar</button>
+                  <button className="admin-button rechazar-button" onClick={() => rechazarReserva(reserva.id)}>Rechazar</button>
+                </>
+              )}
+              <button className="admin-button eliminar-button" onClick={() => eliminarReserva(reserva.id)}>Eliminar</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {/* Paginación */}
+    <div className="pagination">
+      {[...Array(Math.ceil(filterData(reservas, ['nombre', 'email', 'teatro', 'tipoEvento', 'duracion']).length / itemsPerPage))].map((_, index) => (
+        <button key={index} onClick={() => handlePageChange(index + 1)} className={currentPage === index + 1 ? 'active' : ''}>
+          {index + 1}
+        </button>
+      ))}
+    </div>
+  </section>
+)}
+
+
+
 
         {modalVisible && (
           <div className="modal">
@@ -405,7 +514,7 @@ function Admin() {
                   <input className="admin-input" type="date" name="fecha" defaultValue={eventoEditando.fecha} required />
                   <input className="admin-input" type="time" name="hora" defaultValue={eventoEditando.hora} required />
                   <input className="admin-input" type="url" name="imagen" defaultValue={eventoEditando.imagen} required />
-                  <button className="admin-button" type="submit">Guardar Cambios</button>
+                  <button className="admin-button-save" type="submit">Guardar Cambios</button>
                 </form>
               ) : (
                 <form onSubmit={editarTeatro}>
@@ -417,7 +526,7 @@ function Admin() {
                   <input className="admin-input" type="url" name="direccion" defaultValue={teatroEditando.direccion} required />
                   <input className="admin-input" type="url" name="imagen" defaultValue={teatroEditando.imagen} required />
                   <input className="admin-input" type="text" name="mapa" defaultValue={teatroEditando.mapa} required />
-                  <button className="admin-button" type="submit">Guardar Cambios</button>
+                  <button className="admin-button-save" type="submit">Guardar Cambios</button>
                 </form>
               )}
             </div>

@@ -4,7 +4,7 @@
       "id": "1727377712599",
       "nombre": "Sebas",
       "correo": "sebaspro22210@gmail.com",
-      "contraseña": "$2a$10$GTPOfdaavoERBCKzpXMIDuMbJRO/pOdAR7jawqaz0pSca6OFTgR3."
+      "contraseña": "$2a$10$sv5TJKxWY62/d7ftv52wse4OiNPMf7K9k0y2auJxp876vTbUUxmSG"
     },
     {
       "id": "1727468607464",
@@ -51,13 +51,12 @@
   ],
   "Eventos": [
     {
-      "id": "a13f",
       "nombre": "Paisajes y pregones",
-      "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
-      "fecha": "15/01/2025",
-      "hora": "16:00",
       "descripcion": "Descubre un mundo de emociones.",
-      "disponible": true
+      "fecha": "2025-01-15",
+      "hora": "16:00",
+      "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "id": "a13f"
     },
     {
       "id": "1013",
@@ -168,12 +167,29 @@
       "disponible": false
     },
     {
-      "nombre": "Coca 1",
-      "descripcion": "a",
+      "nombre": "Prueba",
+      "descripcion": "prueba admin ",
       "fecha": "2024-10-20",
       "hora": "18:00",
       "imagen": "https://tuboleta.com/imagenes/66abe59f1ae57.webp",
-      "id": "1bbc",
+      "id": "1bbc"
+    },
+    {
+      "id": "1729560540990",
+      "nombre": "Evento de Sebas - Otro",
+      "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "fecha": "2024-12-31",
+      "hora": "11:59",
+      "descripcion": "Evento reservado por Sebas",
+      "disponible": true
+    },
+    {
+      "id": "1729562847514",
+      "nombre": "Evento de Jorge - Obra de teatro",
+      "imagen": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "fecha": "2025-01-31",
+      "hora": "18:00",
+      "descripcion": "Evento reservado por Jorge",
       "disponible": true
     }
   ],
@@ -231,121 +247,104 @@
   ],
   "Reservas": [
     {
-      "id": "1728352197533",
-      "nombre": "Prueba 12",
+      "id": "1729369029104",
+      "nombre": "Sebas",
       "email": "sebaspro22210@gmail.com",
-      "fecha": "2024-10-10",
-      "hora": "06:00",
-      "teatro": "Teatro Libre",
-      "tipoEvento": "Obra de teatro",
-      "duracion": "2",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": true,
-      "rechazada": false
-    },
-    {
-      "id": "1728479419472",
-      "nombre": "Prueba reserva 1",
-      "email": "sebaspro22210@gmail.com",
-      "fecha": "2024-10-10",
+      "fecha": "2025-02-20",
       "hora": "18:00",
-      "teatro": "Teatro Colon",
-      "tipoEvento": "Obra de teatro",
-      "duracion": "1",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": true,
-      "rechazada": false
-    },
-    {
-      "id": "1728483423057",
-      "nombre": "Prueba final 1",
-      "email": "sebaspro22210@gmail.com",
-      "fecha": "2024-10-11",
-      "hora": "07:00",
       "teatro": "Teatro Libre",
-      "tipoEvento": "Obra de teatro",
-      "duracion": "1",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": true,
-      "rechazada": false
-    },
-    {
-      "id": "1728574663111",
-      "nombre": "jorge",
-      "email": "janio53@misena.edu.co",
-      "fecha": "2024-11-09",
-      "hora": "10:00",
-      "teatro": "Teatro Colon",
       "tipoEvento": "Obra Musical",
       "duracion": "2",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": false,
-      "rechazada": false
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": true,
+      "aprobada": true
     },
     {
-      "id": "1728574663967",
-      "nombre": "jorge",
-      "email": "janio53@misena.edu.co",
-      "fecha": "2024-11-09",
-      "hora": "10:00",
-      "teatro": "Teatro Colon",
+      "id": "1729369052878",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2025-12-10",
+      "hora": "18:00",
+      "teatro": "Teatro Libre",
       "tipoEvento": "Obra Musical",
-      "duracion": "2",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": true,
-      "rechazada": false
+      "duracion": "3",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": true,
+      "aprobada": true
     },
     {
-      "id": "1728576422770",
+      "id": "1729372160545",
       "nombre": "Jorge",
       "email": "Jorge@gmail.com",
-      "fecha": "2024-11-11",
+      "fecha": "2025-01-31",
       "hora": "18:00",
       "teatro": "Teatro Libre",
       "tipoEvento": "Obra de teatro",
-      "duracion": "1",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": false,
-      "rechazada": false
+      "duracion": "8",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": true,
+      "aprobada": true
     },
     {
-      "id": "1728576428421",
-      "nombre": "Jorge",
-      "email": "Jorge@gmail.com",
-      "fecha": "2024-11-11",
-      "hora": "18:00",
-      "teatro": "Teatro Libre",
-      "tipoEvento": "Obra de teatro",
-      "duracion": "1",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": false,
-      "rechazada": false
-    },
-    {
-      "id": "1728576908730",
-      "nombre": "Coca",
-      "email": "janio53@misena.edu.co",
+      "id": "1729373441549",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
       "fecha": "2024-12-18",
-      "hora": "15:00",
+      "hora": "20:00",
       "teatro": "Teatro Colon",
-      "tipoEvento": "Obra de teatro",
-      "duracion": "5",
-      "imagenUrl": "https://tuboleta.com/imagenes/66db677c70d12.webp",
-      "aprobada": false,
-      "rechazada": false
+      "tipoEvento": "Otro",
+      "duracion": "2",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": false
     },
     {
-      "id": "1729289065116",
-      "nombre": "Sebastian Botero Gordo ",
+      "id": "1729557199641",
+      "nombre": "Sebas",
       "email": "sebaspro22210@gmail.com",
-      "fecha": "2024-10-20",
-      "hora": "18:11",
-      "teatro": "Teatro Colon",
-      "tipoEvento": "Obra Musical",
+      "fecha": "2024-10-22",
+      "hora": "10:00",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Obra de teatro",
       "duracion": "1",
       "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
-      "aprobada": false,
-      "rechazada": false
+      "estado": null
+    },
+    {
+      "id": "1729557231071",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2024-10-22",
+      "hora": "18:01",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Obra de teatro",
+      "duracion": "5",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": null
+    },
+    {
+      "id": "1729557284787",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2024-11-23",
+      "hora": "18:00",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Obra Musical",
+      "duracion": "2",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": false
+    },
+    {
+      "id": "1729557377720",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "fecha": "2024-12-31",
+      "hora": "11:59",
+      "teatro": "Teatro Libre",
+      "tipoEvento": "Otro",
+      "duracion": "1",
+      "imagenUrl": "https://s3.us-east-1.amazonaws.com/pub.comar.p51-s3.secutix.com/images/catalog/product/large/5777d69c-3dbd-468a-bcc5-cab1c2d8b115.png",
+      "estado": true,
+      "aprobada": true
     }
   ],
   "Contactos": [
@@ -396,6 +395,48 @@
       "nombre": "Jorge",
       "email": "janio53@misena.edu.co",
       "mensaje": "wqerhqgw3ar"
+    },
+    {
+      "id": "1729548331234",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba"
+    },
+    {
+      "id": "1729548438940",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba 2"
+    },
+    {
+      "id": "1729548499403",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba 3"
+    },
+    {
+      "id": "1729548698539",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba de notificacion "
+    },
+    {
+      "id": "1729548759087",
+      "nombre": "Jorge",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba notificacion 2"
+    },
+    {
+      "id": "1729554697518",
+      "nombre": "Sebas",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "Prueba"
+    },
+    {
+      "id": "1729562527393",
+      "nombre": "Jorge",
+      "email": "sebaspro22210@gmail.com",
+      "mensaje": "hkgjkjckjg"
     }
   ]
 }

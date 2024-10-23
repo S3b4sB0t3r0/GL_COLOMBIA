@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import '../styles/Restablecer.css';
-import logoBackground from '../image/logo/5.png';
+import logoBackground from '../image/Fondo/1.png';
 
 function Restablecer() {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSuccess('');
-
+    setMessage('');
+    
     try {
       const response = await fetch('http://localhost:4000/restablecer', {
         method: 'POST',
@@ -24,15 +23,23 @@ function Restablecer() {
       });
 
       if (response.ok) {
-        setSuccess('Se ha enviado un enlace para restablecer tu contraseña.');
+        setMessage('Se ha enviado un enlace para restablecer tu contraseña.');
+        setMessageType('success');
       } else {
         const errorData = await response.json();
-        setError(errorData.message || 'Error al enviar el enlace. Intenta nuevamente.');
+        setMessage(errorData.message || 'Error al enviar el enlace. Intenta nuevamente.');
+        setMessageType('error');
       }
     } catch (err) {
-      setError('Error al enviar el enlace. Intenta nuevamente.');
+      setMessage('Error al enviar el enlace. Intenta nuevamente.');
+      setMessageType('error');
     } finally {
       setLoading(false);
+      // Limpia el mensaje después de 5 segundos
+      setTimeout(() => {
+        setMessage('');
+        setMessageType('');
+      }, 5000);
     }
   };
 
@@ -57,8 +64,13 @@ function Restablecer() {
           {loading ? 'Enviando...' : 'ENVIAR ENLACE PARA RESTABLECER'}
         </button>
       </form>
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
+      
+      {message && (
+        <div className={`notification ${messageType}`} data-id={`restablecer.${messageType}`}>
+          {message}
+        </div>
+      )}
+
       <p className="restablecer-opcion">
         ¿No necesitas restablecer tu contraseña? <a href="/login">Inicia sesión.</a>
       </p>

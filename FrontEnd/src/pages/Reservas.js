@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Reservas.css';
 
 function Reservas() {
-  const [nombre, setNombre] = useState('');
-  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const nombre = storedUser ? storedUser.nombre : '';
+  const email = storedUser ? storedUser.correo : '';
+
   const [fecha, setFecha] = useState('');
   const [hora, setHora] = useState('');
   const [teatro, setTeatro] = useState('');
@@ -12,29 +15,30 @@ function Reservas() {
   const [otroEvento, setOtroEvento] = useState('');
   const [duracion, setDuracion] = useState('');
   const [imagenUrl, setImagenUrl] = useState('');
-  const navigate = useNavigate();
+  const [mensaje, setMensaje] = useState('');
+  const [tipoMensaje, setTipoMensaje] = useState(''); // 'success' o 'error'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const now = new Date();
     const fechaSeleccionada = new Date(`${fecha}T${hora}`);
     if (fechaSeleccionada < now) {
-      alert("La fecha y hora deben ser futuras.");
+      mostrarNotificacion('La fecha y hora deben ser futuras.', 'error');
       return;
     }
 
     const reserva = {
+      id: Date.now().toString(),
       nombre,
       email,
       fecha,
       hora,
       teatro,
-      tipoEvento: tipoEvento === "Otro" ? otroEvento : tipoEvento,
+      tipoEvento,
       duracion,
       imagenUrl,
+      estado: null, 
     };
-
-    console.log('Reserva enviada:', reserva);
 
     try {
       const response = await fetch('http://localhost:4000/reservas', {
@@ -51,13 +55,25 @@ function Reservas() {
       }
 
       const data = await response.json();
-      console.log('Reserva guardada:', data);
-      alert('Reserva realizada con éxito!');
-      navigate('/');
+      mostrarNotificacion('Reserva realizada con éxito!', 'success');
+      
+      // Redirigir después de mostrar la notificación
+      setTimeout(() => {
+        navigate('/');
+      }, 5000); // Espera 5 segundos antes de redirigir
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
-      alert('Hubo un error al realizar la reserva. Intenta nuevamente.');
+      mostrarNotificacion('Hubo un error al realizar la reserva. Intenta nuevamente.', 'error');
     }
+  };
+
+  const mostrarNotificacion = (mensaje, tipo) => {
+    setMensaje(mensaje);
+    setTipoMensaje(tipo);
+    setTimeout(() => {
+      setMensaje('');
+      setTipoMensaje('');
+    }, 5000); // Duración de 5 segundos
   };
 
   return (
@@ -84,7 +100,7 @@ function Reservas() {
                   type="text" 
                   id="input-nombre" 
                   value={nombre} 
-                  onChange={(e) => setNombre(e.target.value)} 
+                  readOnly 
                   className="reservas-input" 
                   required 
                 />
@@ -96,7 +112,7 @@ function Reservas() {
                   type="email" 
                   id="input-email" 
                   value={email} 
-                  onChange={(e) => setEmail(e.target.value)} 
+                  readOnly 
                   className="reservas-input" 
                   required 
                 />
@@ -138,7 +154,7 @@ function Reservas() {
                   className="reservas-input" 
                   required 
                   min="1"
-                  max="12"
+                  max="8"
                 />
               </div>
             </div>
@@ -208,6 +224,12 @@ function Reservas() {
             <button type="submit" className="reservas-submit-btn" id="reservas-submit-btn">Reservar</button>
           </form>
         </div>
+
+        {mensaje && (
+          <div className={`reservas.notificacion ${tipoMensaje}`} id="reservas-notification">
+            {mensaje}
+          </div>
+        )}
       </main>
     </div>
   );

@@ -1,56 +1,95 @@
-/* Estilos para el formulario de registro */
-.registro-container {
-    text-align: center;
-    color: rgb(0, 0, 0);
-    background-color: #ffffff; /* Un fondo diferente para distinguir el registro */
-    padding: 40px;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    font-weight: bold;
-  }
-  
-  .registro-container h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-  }
-  
-  .registro-container p {
-    font-size: 18px;
-    margin-bottom: 40px;
-  }
-  
-  #registro-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #registro-form input {
-    width: 50%;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: none;
-    background-color: #444;
-    color: white;
-    font-size: 16px;
-  }
-  
-  #registro-form button {
-    padding: 15px 30px;
-    background-color: #000000; /* Un botón de color diferente */
-    color: rgb(255, 255, 255);
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
-  
-  #registro-form button:hover {
-    background-color: #ffffff;
-  }
-  
-  #registro-form input::placeholder {
-    color: #bbb;
-  }
-  
+        /* Estilos para el formulario de inicio de sesión */
+        .registro-container {
+          text-align: center;
+          color: rgb(0, 0, 0);
+          background-image: url('../image/Fondo/1.png'); /* Imagen de fondo */
+          background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+          background-position: center;
+          background-repeat: no-repeat;
+          padding: 40px;
+          font-family: Arial, sans-serif;
+          min-height: 100vh;
+          font-weight: bold;
+      }
+
+      .registro-container h2 {
+          font-size: 36px;
+          margin-bottom: 20px;
+      }
+
+      .registro-container p {
+          font-size: 18px;
+          margin-bottom: 40px;
+      }
+
+      #registro-form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+          padding: 20px;
+          border-radius: 10px;
+          max-width: 400px;
+          margin: auto;
+      }
+
+      #registro-form input {
+          width: 100%;
+          padding: 15px;
+          margin: 10px 0;
+          border-radius: 5px;
+          border: none;
+          background-color: #444;
+          color: white;
+          font-size: 16px;
+      }
+
+      #registro-form button {
+          padding: 15px 30px;
+          background-color: #000000; /* Un botón de color negro */
+          color: rgb(255, 255, 255);
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          transition: background-color 0.3s;
+      }
+
+      #registro-form button:hover {
+          background-color: #ffffff;
+          color: #000000;
+      }
+
+      #registro-form input::placeholder {
+          color: #bbb;
+      }
+
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.5s ease-in-out;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+      }
+      
+      /* Estilo para el mensaje de éxito */
+      .notification[data-id="registro.success"] {
+        background-color: rgba(0, 128, 0, 0.9); /* Verde para éxito */
+        color: white;
+      }
+      
+      /* Estilo para el mensaje de error */
+      .notification[data-id="registro.error"] {
+        background-color: rgba(255, 0, 0, 0.9); /* Rojo para error */
+        color: white;
+      }
+      
+      /* Estilo para el mensaje de advertencia (por ejemplo, contraseñas no coincidentes) */
+      .notification[data-id="registro.warning"] {
+        background-color: rgba(255, 0, 0, 0.9); /* Naranja para advertencia */
+        color: white; /* Texto negro para contraste */
+      }
+      
+      

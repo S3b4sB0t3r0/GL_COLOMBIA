@@ -119,8 +119,7 @@ app.post('/reservas', async (req, res) => {
     tipoEvento,
     duracion,
     imagenUrl,
-    aprobada: false,
-    rechazada: false
+    estado: null, // Cambiado de 'aprobada' y 'rechazada' a 'estado' inicializado como null
   };
 
   db.Reservas.push(newReserva);
@@ -135,7 +134,8 @@ app.post('/reservas', async (req, res) => {
   }
 });
 
-// Ruta para aprobar una reserva (envía el correo de confirmación)
+
+// Ruta para aprobar una reserva
 app.post('/aprobarReserva/:id', async (req, res) => {
   const db = loadDB();
   const reservaId = req.params.id;
@@ -146,11 +146,11 @@ app.post('/aprobarReserva/:id', async (req, res) => {
     return res.status(404).json({ message: 'Reserva no encontrada.' });
   }
 
-  if (reserva.aprobada) {
+  if (reserva.estado === 'aprobada') {
     return res.status(400).json({ message: 'La reserva ya ha sido aprobada.' });
   }
 
-  reserva.aprobada = true;
+  reserva.estado = 'aprobada'; // Cambiado a 'estado'
   saveDB(db); // Guarda el cambio en la base de datos
 
   try {
@@ -216,11 +216,11 @@ app.post('/reservas/:id/rechazar', async (req, res) => {
     return res.status(404).json({ message: 'Reserva no encontrada.' });
   }
 
-  if (reserva.rechazada) {
+  if (reserva.estado === 'rechazada') {
     return res.status(400).json({ message: 'La reserva ya ha sido rechazada.' });
   }
 
-  reserva.rechazada = true;
+  reserva.estado = 'rechazada'; // Cambiado a 'estado'
   saveDB(db); // Guarda el cambio en la base de datos
 
   try {
@@ -303,6 +303,11 @@ app.post('/restablecer/:token', async (req, res) => {
 app.post('/contacto', async (req, res) => {
   const { nombre, email, mensaje } = req.body;
 
+  // Validaciones simples
+  if (!nombre || !email || !mensaje) {
+    return res.status(400).json({ message: 'Por favor, completa todos los campos.' });
+  }
+
   const db = loadDB();
   const newContact = { id: Date.now().toString(), nombre, email, mensaje };
 
@@ -318,6 +323,7 @@ app.post('/contacto', async (req, res) => {
     res.status(500).json({ message: 'Error al enviar el correo.' });
   }
 });
+
 
 // Iniciar el servidor
 app.listen(PORT, () => {

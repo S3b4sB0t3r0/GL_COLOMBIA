@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
-import logoBackground from '../image/logo/5.png';
+import logoBackground from '../image/Fondo/1.png';
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -34,18 +35,28 @@ function Login() {
           correo: data.email,
         }));
 
-        // Redirigir según el correo del usuario
-        if (data.email === 'Sebas@GLC.com') {
-          navigate('/admin'); // Redirige a la página de administración
-        } else {
-          navigate('/'); // Redirige a la página principal
-        }
+        setSuccessMessage('Inicio de sesión exitoso. Redirigiendo...'); // Mensaje de éxito
+        setTimeout(() => {
+          setSuccessMessage(''); // Oculta el mensaje de éxito
+          // Redirigir según el correo del usuario
+          if (data.email === 'Sebas@GLC.com') {
+            navigate('/admin'); // Redirige a la página de administración
+          } else {
+            navigate('/'); // Redirige a la página principal
+          }
+        }, 4000); // Dura 7 segundos
       } else {
         setErrorMessage(result.message || 'Correo o contraseña incorrectos');
+        setTimeout(() => {
+          setErrorMessage(''); // Oculta el mensaje de error
+        }, 4000); // Dura 7 segundos
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setErrorMessage('Hubo un error al conectar con el servidor');
+      setTimeout(() => {
+        setErrorMessage(''); // Oculta el mensaje de error
+      }, 4000); // Dura 7 segundos
     }
   };
 
@@ -67,7 +78,16 @@ function Login() {
         <button type="submit">INICIAR SESIÓN</button>
       </form>
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && (
+        <div className="notification error" data-id="login.error">
+          {errorMessage}
+        </div>
+      )}
+      {successMessage && (
+        <div className="notification success" data-id="login.success">
+          {successMessage}
+        </div>
+      )}
       <small>¿Olvidaste tu Contraseña? <a href="/restablecer">Ingresa Aquí</a></small>
     </div>
   );

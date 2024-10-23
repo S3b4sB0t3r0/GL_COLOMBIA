@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/NavBar.css';
-import logo from '../image/logo/3.png';
+import logo from '../image/logo/10.png';
 
 function NavBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);

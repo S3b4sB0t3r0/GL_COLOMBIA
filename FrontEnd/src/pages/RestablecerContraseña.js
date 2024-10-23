@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/RestablecerContraseña.css';
-import logoBackground from '../image/logo/5.png'; // Importa la imagen
+import logoBackground from '../image/Fondo/1.png';
 
 function RestablecerContraseña() {
   const { token } = useParams();
   const [nuevaContraseña, setNuevaContraseña] = useState('');
   const [confirmarContraseña, setConfirmarContraseña] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [mensajeTipo, setMensajeTipo] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,8 +17,10 @@ function RestablecerContraseña() {
         const response = await fetch(`http://localhost:4000/restablecer/${token}`);
         if (!response.ok) throw new Error('Token inválido o expirado');
         setMensaje('Token válido. Puedes establecer una nueva contraseña.');
+        setMensajeTipo('success');
       } catch (error) {
         setMensaje(error.message);
+        setMensajeTipo('error');
       }
     };
 
@@ -28,6 +31,8 @@ function RestablecerContraseña() {
     e.preventDefault();
     if (nuevaContraseña !== confirmarContraseña) {
       setMensaje('Las contraseñas no coinciden.');
+      setMensajeTipo('error');
+      mostrarMensaje();
       return;
     }
 
@@ -42,20 +47,35 @@ function RestablecerContraseña() {
 
       if (!response.ok) throw new Error('Error al restablecer la contraseña.');
       setMensaje('Contraseña restablecida con éxito.');
-      
+      setMensajeTipo('success');
+
       // Redirigir a la página de login
       setTimeout(() => {
         navigate('/login');
-      }, 1000); // Espera 1 segundo antes de redirigir
+      }, 1000);
     } catch (error) {
       setMensaje(error.message);
+      setMensajeTipo('error');
     }
+
+    mostrarMensaje();
+  };
+
+  const mostrarMensaje = () => {
+    setTimeout(() => {
+      setMensaje('');
+      setMensajeTipo('');
+    }, 5000); // Limpia el mensaje después de 5 segundos
   };
 
   return (
     <div className="restablecer-contraseña-container" style={{ backgroundImage: `url(${logoBackground})` }}>
       <h1 className="restablecer-contraseña-titulo">Restablecer Contraseña</h1>
-      <p className="restablecer-contraseña-mensaje">{mensaje}</p>
+      {mensaje && (
+        <div className={`notification ${mensajeTipo}`} data-id={`restablecerContraseña.${mensajeTipo}`}>
+          {mensaje}
+        </div>
+      )}
       <form className="restablecer-contraseña-formulario" onSubmit={manejarSubmit}>
         <input
           type="password"

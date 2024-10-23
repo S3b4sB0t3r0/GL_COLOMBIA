@@ -1,70 +1,100 @@
-.restablecer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #000000;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-  }
-  
-  .restablecer-titulo {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .restablecer-instrucciones {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .restablecer-formulario {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .restablecer-label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-  }
-  
-  .restablecer-input {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    background-color: #000;
-    border: 1px solid #fff;
-    color: #fff;
-    font-size: 1rem;
-  }
-  
-  .restablecer-boton {
-    padding: 1rem;
-    background-color: #000000;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .restablecer-boton:hover {
-    background-color: #ccc;
-  }
-  
-  .restablecer-opcion {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .restablecer-opcion a {
-    color: #000000;
-    text-decoration: underline;
-  }
-  
+        /* Estilos para el formulario de inicio de sesión */
+        .restablecer-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          background-image: url('../image/Fondo/1.png'); /* Imagen de fondo */
+          background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+          background-position: center;
+          background-repeat: no-repeat;
+          color: rgb(0, 0, 0);
+          font-weight: bold;
+      }
+
+      .restablecer-titulo {
+          font-size: 2.5rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+      }
+
+      .restablecer-instrucciones {
+          font-size: 1rem;
+          margin-bottom: 2rem;
+          text-align: center;
+      }
+
+      .restablecer-formulario {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 400px;
+          background-color: rgba(255, 255, 255, 0.7); /* Fondo oscuro para el formulario */
+          padding: 20px;
+          border-radius: 10px;
+      }
+
+      .restablecer-label {
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
+          color: #000000;
+      }
+
+      .restablecer-input {
+          padding: 1rem;
+          margin-bottom: 1rem;
+          background-color: #000;
+          border: 1px solid #fff;
+          color: #fff;
+          font-size: 1rem;
+      }
+
+      .restablecer-boton {
+          padding: 1rem;
+          background-color: #000000;
+          color: #ffffff;
+          font-size: 1rem;
+          font-weight: bold;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+      }
+
+      .restablecer-boton:hover {
+          background-color: #ccc;
+      }
+
+      .restablecer-opcion {
+          margin-top: 1rem;
+          font-size: 0.9rem;
+      }
+
+      .restablecer-opcion a {
+          color: #000000;
+          text-decoration: underline;
+      }
+
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        transition: opacity 0.5s ease-in-out;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+      }
+      
+      /* Estilo para el mensaje de éxito */
+      .notification[data-id="restablecer.success"] {
+        background-color: rgba(0, 128, 0, 0.9); /* Verde para éxito */
+        color: white;
+      }
+      
+      /* Estilo para el mensaje de error */
+      .notification[data-id="restablecer.error"] {
+        background-color: rgba(255, 0, 0, 0.9); /* Rojo para error */
+        color: white;
+      }
+      
