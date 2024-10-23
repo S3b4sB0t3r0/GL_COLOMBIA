@@ -2,6 +2,7 @@
 .admin-container {
   display: flex;
   font-family: Arial, sans-serif;
+  
 }
 
 .admin-nav {
@@ -294,5 +295,11 @@
 }
 
 .notification-modal-close:hover {
+  color: black;
+}
+
+.admin-role {
+  margin-bottom: 20px; /* Espacio desde el fondo */
+  font-weight: bold;
   color: black;
 }

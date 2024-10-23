@@ -316,6 +316,24 @@ const handleNotificationReject = () => {
           <li><a href="#" onClick={() => setActiveSection('contacto')}>Contactos</a></li>
           <li><a href="#" onClick={() => setActiveSection('reservas')}>Reservas</a></li>
         </ul>
+        <div className="admin-role">
+          <br>
+          </br>
+          <br>
+          </br>
+          <br>
+          </br>
+          <br>
+          </br>
+          <br>
+          </br>
+          <br>
+          </br>
+          <br>
+          </br>
+        <p>Rol </p>
+        <p>Administrador</p>
+      </div>
       </nav>
 
       <div className="admin-content">
