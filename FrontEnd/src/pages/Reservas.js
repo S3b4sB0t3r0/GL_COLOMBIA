@@ -60,7 +60,7 @@ function Reservas() {
       // Redirigir después de mostrar la notificación
       setTimeout(() => {
         navigate('/');
-      }, 5000); // Espera 5 segundos antes de redirigir
+      }, 1000); // Espera 5 segundos antes de redirigir
     } catch (error) {
       console.error('Error al realizar la reserva:', error);
       mostrarNotificacion('Hubo un error al realizar la reserva. Intenta nuevamente.', 'error');
@@ -73,7 +73,7 @@ function Reservas() {
     setTimeout(() => {
       setMensaje('');
       setTipoMensaje('');
-    }, 5000); // Duración de 5 segundos
+    }, 1000); // Duración de 5 segundos
   };
 
   return (
@@ -90,7 +90,7 @@ function Reservas() {
       </aside>
 
       <main className="reservas-main-content" id="reservas-main-content">
-        <h1 className="reservas-title" id="reservas-title">Reservar Teatro</h1>
+        <h1 className="reservas-title" id="reservas-title">Reservar</h1>
         <div className="reservas-form-container" id="reservas-form-container">
           <form className="reservas-form" id="reservas-form" onSubmit={handleSubmit}>
             <div className="reservas-row">
@@ -221,7 +221,7 @@ function Reservas() {
               />
             </div>
 
-            <button type="submit" className="reservas-submit-btn" id="reservas-submit-btn">Reservar</button>
+            <button type="submit" className="reservas-submit-btn" id="reservas-submit-btn">Solicitud de Reservar</button>
           </form>
         </div>
 

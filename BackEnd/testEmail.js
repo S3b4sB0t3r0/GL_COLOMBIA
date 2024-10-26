@@ -3,16 +3,16 @@ const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'gestionlogitica.colombia@gmail.com',
-    pass: 'wtjdvtomhglruksc', // Asegúrate de que la contraseña sea correcta
+    user: 'logísticacolombianalpc@gmail.com',
+    pass: 'jymp llhg bzbw jsbz', // Asegúrate de que la contraseña sea correcta
   },
 });
 
 const sendResetEmail = async (email, resetLink) => {
   const mailOptions = {
-    from: 'gestionlogitica.colombia@gmail.com',
+    from: 'logísticacolombianalpc@gmail.com',
     to: email,
-    subject: 'Restablecimiento de Contraseña - Gestión Logística Colombia',
+    subject: 'Restablecimiento de Contraseña - Gestión logística Colombiana',
     html: `
       <!DOCTYPE html>
       <html lang="es">
@@ -76,17 +76,17 @@ const sendResetEmail = async (email, resetLink) => {
       <body>
           <div class="container">
               <div class="header">
-                  <h1>Gestión Logística Colombia</h1>
+                  <h1>Gestión logística Colombiana</h1>
               </div>
               <div class="content">
                   <h2>Estimado Usuario,</h2>
-                  <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta en Gestión Logística Colombia.</p>
+                  <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta en Gestión logística Colombiana.</p>
                   <p>Por favor, haga clic en el siguiente enlace para restablecer su contraseña:</p>
                   <a href="${resetLink}">Restablecer Contraseña</a>
                   <p>Si no solicitó este cambio, puede ignorar este correo. Su cuenta permanece segura.</p>
               </div>
               <div class="footer">
-                  <p>© 2024 Gestión Logística Colombia. Todos los derechos reservados.</p>
+                  <p>© 2024 Gestión logística Colombiana. Todos los derechos reservados.</p>
                   <p>Estamos aquí para ayudarlo con la logística de sus eventos, grandes o pequeños.</p>
               </div>
           </div>
@@ -106,9 +106,9 @@ const sendResetEmail = async (email, resetLink) => {
 
 const sendContactEmail = async (email) => {
   const mailOptions = {
-    from: 'gestionlogitica.colombia@gmail.com',
+    from: 'logísticacolombianalpc@gmail.com',
     to: email,
-    subject: 'Confirmación de Mensaje - Gestión Logística Colombia',
+    subject: 'Confirmación de Mensaje - Gestión logística Colombiana',
     html: `
       <!DOCTYPE html>
       <html lang="es">
@@ -158,7 +158,7 @@ const sendContactEmail = async (email) => {
       <body>
           <div class="container">
               <div class="header">
-                  <h1>Gestión Logística Colombia</h1>
+                  <h1>Gestión logística Colombiana</h1>
               </div>
               <div class="content">
                   <h2>Querido Usuario,</h2>
@@ -167,7 +167,7 @@ const sendContactEmail = async (email) => {
                   <p>¡Estamos aquí para ayudarle!</p>
               </div>
               <div class="footer">
-                  <p>© 2024 Gestión Logística Colombia. Todos los derechos reservados.</p>
+                  <p>© 2024 Gestión logística Colombiana. Todos los derechos reservados.</p>
                   <p>Estamos aquí para ayudarlo con la logística de sus eventos, grandes o pequeños.</p>
               </div>
           </div>
@@ -191,9 +191,9 @@ const sendContactEmail = async (email) => {
 
 const sendReservationEmail = async (email) => {
     const mailOptions = {
-      from: 'gestionlogitica.colombia@gmail.com',
+      from: 'logísticacolombianalpc@gmail.com',
       to: email,
-      subject: 'Confirmación de Reserva - Gestión Logística Colombia',
+      subject: 'Confirmación de Reserva - Gestión logística Colombiana',
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -243,14 +243,14 @@ const sendReservationEmail = async (email) => {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>Gestión Logística Colombia</h1>
+                    <h1>Gestión logística Colombiana</h1>
                 </div>
                 <div class="content">
                     <h2>Estimado Usuario,</h2>
                     <p>Hemos recibido su reserva con éxito. Nos pondremos en contacto pronto.</p>
                 </div>
                 <div class="footer">
-                    <p>© 2024 Gestión Logística Colombia. Todos los derechos reservados.</p>
+                    <p>© 2024 Gestión logística Colombiana. Todos los derechos reservados.</p>
                 </div>
             </div>
         </body>
@@ -276,9 +276,9 @@ const sendReservationEmail = async (email) => {
   // Confirmación de reserva
 const conReservationEmail = async (email) => {
     const mailOptions = {
-      from: 'gestionlogitica.colombia@gmail.com',
+      from: 'logísticacolombianalpc@gmail.com',
       to: email,
-      subject: 'Confirmación de Reserva - Gestión Logística Colombia',
+      subject: 'Confirmación de Reserva - Gestión logística Colombiana',
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -328,14 +328,14 @@ const conReservationEmail = async (email) => {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>Gestión Logística Colombia</h1>
+                    <h1>Gestión logística Colombiana</h1>
                 </div>
                 <div class="content">
                     <h2>Estimado Usuario,</h2>
                     <p>Su reserva ha sido confirmada con éxito. Pronto nos pondremos en contacto para los detalles adicionales.</p>
                 </div>
                 <div class="footer">
-                    <p>© 2024 Gestión Logística Colombia. Todos los derechos reservados.</p>
+                    <p>© 2024 Gestión logística Colombiana. Todos los derechos reservados.</p>
                 </div>
             </div>
         </body>
@@ -355,9 +355,9 @@ const conReservationEmail = async (email) => {
   // Rechazo de reserva
   const sendRejectionEmail = async (email) => {
     const mailOptions = {
-      from: 'gestionlogitica.colombia@gmail.com',
+      from: 'logísticacolombianalpc@gmail.com',
       to: email,
-      subject: 'Rechazo de Reserva - Gestión Logística Colombia',
+      subject: 'Rechazo de Reserva - Gestión logística Colombiana',
       html: `
         <!DOCTYPE html>
         <html lang="es">
@@ -407,14 +407,14 @@ const conReservationEmail = async (email) => {
         <body>
             <div class="container">
                 <div class="header">
-                    <h1>Gestión Logística Colombia</h1>
+                    <h1>Gestión logística Colombiana</h1>
                 </div>
                 <div class="content">
                     <h2>Estimado Usuario,</h2>
                     <p>Lamentamos informarle que su solicitud de reserva no ha sido aprobada. Si tiene alguna duda, no dude en contactarnos.</p>
                 </div>
                 <div class="footer">
-                    <p>© 2024 Gestión Logística Colombia. Todos los derechos reservados.</p>
+                    <p>© 2024 Gestión logística Colombiana. Todos los derechos reservados.</p>
                 </div>
             </div>
         </body>

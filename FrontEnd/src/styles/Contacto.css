@@ -5,7 +5,6 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url('../image/Fondo/1.png'); /* Imagen de fondo */
   background-size: cover; /* Hace que la imagen cubra todo el contenedor */
   background-position: center;
   background-repeat: no-repeat;
@@ -20,6 +19,11 @@
 .contact-container p {
   font-size: 18px;
   margin-bottom: 40px;
+}
+
+.contacto-logo {
+  max-width: 150px; /* Aumenta el tamaño máximo del logo */
+  margin-bottom: 20px; /* Espacio debajo del logo */
 }
 
 /* Formulario */
@@ -73,6 +77,8 @@
 #contact-form textarea::placeholder {
   color: #bbb;
 }
+
+/* Notificaciones */
 .notification {
   position: fixed;
   top: 20px;
@@ -85,6 +91,7 @@
   transition: opacity 0.5s ease-in-out;
   z-index: 1000;
 }
+
 .error {
   background-color: rgba(255, 0, 0, 0.9); /* Rojo para error */
   color: white;

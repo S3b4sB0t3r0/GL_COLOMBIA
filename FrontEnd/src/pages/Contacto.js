@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Contacto.css';
-import logoBackground from '../image/Fondo/1.png';
+import logo from '../image/logo/9.png'; // Asegúrate de que esta ruta sea correcta
 
 function Contacto() {
   const [error, setError] = useState('');
@@ -41,19 +41,20 @@ function Contacto() {
         setTimeout(() => {
           setNotification(null); // Oculta la notificación
           window.location.href = '/'; // Redirige a la ruta raíz
-        }, 7000); // Dura 7 segundos
+        }, 2000); // Dura 2 segundos
       })
       .catch(error => {
         console.error('Error:', error);
         setError('Error al enviar el mensaje.'); // Mensaje de error
         setTimeout(() => {
           setError(''); // Oculta el mensaje de error
-        }, 7000); // Dura 7 segundos
+        }, 2000); // Dura 2 segundos
       });
   };
 
   return (
-    <div className="contact-container" style={{ backgroundImage: `url(${logoBackground})` }}>
+    <div className="contact-container">
+      <img src={logo} alt="Logo de Contacto" className="contacto-logo" />
       <h2>Comunícate con nosotros</h2>
       <p>Estás interesado en que te apoyemos con tu evento, comunícate con nosotros.</p>
 
@@ -70,14 +71,14 @@ function Contacto() {
       )}
 
       <form id="contact-form" onSubmit={handleSubmit}>
-        <label htmlFor="name">Nombre</label>
-        <input type="text" name="name" id="name" placeholder="Nombre" required />
+        <label htmlFor="contact-name">Nombre</label>
+        <input type="text" name="name" id="contact-name" placeholder="Nombre" required />
 
-        <label htmlFor="email">Correo electrónico</label>
-        <input type="email" name="email" id="email" placeholder="Correo electrónico*" required />
+        <label htmlFor="contact-email">Correo electrónico</label>
+        <input type="email" name="email" id="contact-email" placeholder="Correo electrónico*" required />
 
-        <label htmlFor="message">Mensaje</label>
-        <textarea name="message" id="message" placeholder="Mensaje" required></textarea>
+        <label htmlFor="contact-message">Mensaje</label>
+        <textarea name="message" id="contact-message" placeholder="Mensaje" required></textarea>
 
         <br />
         <button type="submit">ENVIAR</button>

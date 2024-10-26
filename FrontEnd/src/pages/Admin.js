@@ -464,7 +464,11 @@ const handleNotificationReject = () => {
             <td>{teatro.telefono}</td>
             <td>
               <button className="admin-button editar-button" onClick={() => abrirModalTeatro(teatro)}>Editar</button>
+ <br></br>
+ <br></br>
+ 
               <button className="admin-button eliminar-button" onClick={() => eliminarTeatro(teatro.id)}>Eliminar</button>
+              
             </td>
           </tr>
         ))}

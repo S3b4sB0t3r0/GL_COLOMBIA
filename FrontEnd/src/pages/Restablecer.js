@@ -39,7 +39,7 @@ function Restablecer() {
       setTimeout(() => {
         setMessage('');
         setMessageType('');
-      }, 5000);
+      }, 1000);
     }
   };
 

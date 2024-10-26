@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
-import logoBackground from '../image/Fondo/1.png';
+import logo from '../image/logo/9.png'; // Asegúrate de que esta ruta sea correcta
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState('');
@@ -29,39 +29,38 @@ function Login() {
         const token = result.token; // Guarda el token
         localStorage.setItem('token', token);
         
-        // Guardar la información del usuario en localStorage
         localStorage.setItem('user', JSON.stringify({
           nombre: result.nombre,
           correo: data.email,
         }));
 
-        setSuccessMessage('Inicio de sesión exitoso. Redirigiendo...'); // Mensaje de éxito
+        setSuccessMessage('Inicio de sesión exitoso. Redirigiendo...');
         setTimeout(() => {
-          setSuccessMessage(''); // Oculta el mensaje de éxito
-          // Redirigir según el correo del usuario
+          setSuccessMessage('');
           if (data.email === 'Sebas@GLC.com') {
-            navigate('/admin'); // Redirige a la página de administración
+            navigate('/admin');
           } else {
-            navigate('/'); // Redirige a la página principal
+            navigate('/');
           }
-        }, 4000); // Dura 7 segundos
+        }, 1000);
       } else {
         setErrorMessage(result.message || 'Correo o contraseña incorrectos');
         setTimeout(() => {
-          setErrorMessage(''); // Oculta el mensaje de error
-        }, 4000); // Dura 7 segundos
+          setErrorMessage('');
+        }, 1000);
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
       setErrorMessage('Hubo un error al conectar con el servidor');
       setTimeout(() => {
-        setErrorMessage(''); // Oculta el mensaje de error
-      }, 4000); // Dura 7 segundos
+        setErrorMessage('');
+      }, 1000);
     }
   };
 
   return (
-    <div className="login-container" style={{ backgroundImage: `url(${logoBackground})` }}>
+    <div className="login-container">
+      <img src={logo} alt="Logo" className="login-logo" />
       <header className="login-header">
         <h2>Iniciar Sesión</h2>
         <p>Accede a tu cuenta para continuar</p>
